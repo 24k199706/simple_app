@@ -1,16 +1,23 @@
 class UsersController < ApplicationController
   def show
-    @user=User.find(params[:user])
+    p "==================="
+    p params
+    p "==================="
+    @user=User.find(params[:id])
   end
   def new
     @user=User.new
   end
   def creat
+    p "==================="
+    p params
+    p "==================="
     @user=User.new(user_params)
-    if User.save
+    if @user.save
       flash[:success] = "Welcome to the Simple_App!"
       redirect_to @user
     else
+      puts @user.errors.full_messages
       render "new"
     end
   end

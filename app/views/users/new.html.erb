@@ -3,9 +3,11 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user , url: new_path) do |f| %>
+    <%= form_for(@user , url: creat_path) do |f| %>
       <%= f.label :"ユーザ名" %>
       <%= f.text_field :name, class: 'form-control' %>
+      <%= f.label :"メールアドレス" %>
+      <%= f.text_field :email, class: 'form-control' %>
       <%= f.label :"パスワード" %>
       <%= f.password_field :password, class: 'form-control' %>
 
