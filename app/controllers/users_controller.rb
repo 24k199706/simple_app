@@ -8,12 +8,13 @@ class UsersController < ApplicationController
   def new
     @user=User.new
   end
-  def creat
+  def creat   
+    @user=User.new(user_params)
     p "==================="
     p params
     p "==================="
-    @user=User.new(user_params)
     if @user.save
+      log_in @user
       flash[:success] = "Welcome to the Simple_App!"
       redirect_to @user
     else
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
   def index
   end
   def edit
+    @user = User.find(params[:id])
   end
 
   private
