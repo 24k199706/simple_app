@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/users/index', to: "users#index" ,as:"index"#投稿一覧
   get '/users/:id', to: "users#show",as:"user"#プロフィール詳細画面
   get '/users/:id/edit', to: "users#edit",as:"edit"#プロフィール編集画面
-  patch '/users/:id/edit', to: "users#update" ,as:"update"
+  patch '/users/:id/edit', to: "users#update" ,as:"update"#プロフィール更新画面
   delete '/users/:id', to: "users#destory",as: "delete"
   resources :users
   resources :password_resets,     only: [:new, :create, :edit, :update]

@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     p params
     p "==================="
     if user && user.authenticate(params[:session][:password])
+    # ユーザーログイン後にユーザー情報のページにリダイレクトする
       log_in user
       redirect_to root_path
     else
@@ -16,7 +17,8 @@ class SessionsController < ApplicationController
     end
   end
   def destory
-    log_out
+    #トークンでログインしているときにログアウトできるようにする
+    log_out if logged_in?
     redirect_to root_path
   end
 end
