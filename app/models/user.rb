@@ -1,7 +1,11 @@
 class User < ApplicationRecord
+  has_many :posts
+  has_many :posts, dependent: :destroy
+  mount_uploader :image, ImageUploader
   attr_accessor :remember_token
   validates :name, presence: true 
   validates :content, length: { maximum: 200 }
+  validates :image,presence: true , allow_nil: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 } ,allow_nil: true
   #渡された文字列をハッシュ値に変更する

@@ -1,5 +1,9 @@
 <h1>Users#show</h1> 
-<%= gravatar_for @user %>
+<% if @user.image ==nil %>
+  <%= gravatar_for @user %>
+<% else %>
+  <%= image_tag @user.image.url %>  
+<% end %>
 <%= @user.name %>
 <%= @user.content %>
 <%= link_to "編集", edit_path(current_user) %>

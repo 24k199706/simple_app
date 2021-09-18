@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   get '/users/:id/edit', to: "users#edit",as:"edit"#プロフィール編集画面
   patch '/users/:id/edit', to: "users#update" ,as:"update"#プロフィール更新画面
   delete '/users/:id', to: "users#destory",as: "delete"
+  get "/posts/new", to:"posts#new", as:"posts_new"
+  post "/posts",to:"posts#creat",as: "posts_creat"
+  delete "/posts/:id", to:"posts#destory" , as: "posts_delete"
   resources :users
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :posts,          only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

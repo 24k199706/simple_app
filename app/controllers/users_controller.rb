@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     p params
     p "==================="
     @user=User.find(params[:id])
+    @posts = @user.posts.paginate(page: params[:page])
   end
   def new
     @user=User.new
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
     p "==================="
     if @user.save
       log_in @user
-      remember user
+      remember @user
       flash[:success] = "Welcome to the Simple_App!"
       redirect_to @user
     else
@@ -35,7 +36,9 @@ class UsersController < ApplicationController
   end 
   def update
     @user = User.find(params[:id])
-    
+    p "==================="
+    p @user.errors.full_messages
+    p "==================="
     if @user.update(user_params)
       redirect_to @user
     else
@@ -49,7 +52,7 @@ class UsersController < ApplicationController
   private
     #strongparams設定
     def user_params
-      params.require(:user).permit(:name, :email, :password,:content,
+      params.require(:user).permit(:name, :email, :password,:content, :image,
                                    :password_confirmation)
     end
     #以下beforeアクションのメソッド

@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :password_digest
       t.text :content
+      t.string :image
       t.integer :sns_type
       t.boolean :admin
 

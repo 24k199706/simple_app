@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_09_02_020324) do
     t.string "email"
     t.string "password_digest"
     t.text "content"
+    t.string "image"
     t.integer "sns_type"
     t.boolean "admin"
     t.datetime "created_at", null: false

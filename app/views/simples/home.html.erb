@@ -1,14 +1,1 @@
-<% if logged_in? %>
-    <li><%= link_to "Users", '#' %></li>
-    <ul class="dropdown-menu"></ul>
-    <li><%= link_to "Profile", current_user %></li>
-    <li><%= link_to "新規投稿", '#' %></li>
-    <li class="divider"></li>
-    <li>
-        <%= link_to "Log out", destory_path, method: :delete %>
-    </li>
-<% else %>
-    <%= link_to "新規登録", new_path %>
-    <%= link_to "ログイン", login_path %>
-    ホーム画面
-<% end %>
+
