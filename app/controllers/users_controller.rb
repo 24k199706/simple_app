@@ -6,12 +6,11 @@ class UsersController < ApplicationController
     p params
     p "==================="
     @user=User.find(params[:id])
-    @posts = @user.posts.paginate(page: params[:page])
   end
   def new
     @user=User.new
   end
-  def creat   
+  def creat
     @user=User.new(user_params)
     p "==================="
     p params
@@ -20,7 +19,7 @@ class UsersController < ApplicationController
       log_in @user
       remember @user
       flash[:success] = "Welcome to the Simple_App!"
-      redirect_to @user
+      redirect_to root_path
     else
       puts @user.errors.full_messages
       render "new"

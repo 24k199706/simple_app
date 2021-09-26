@@ -1,1 +1,14 @@
 
+<!--ログインしているときの処理 -->
+<% if logged_in? %>
+    <table class="table table-hover">
+        <tbody>
+            <% @post.each do |post| %>
+                <%= post.title %>
+                <%= post.content %>
+            <% end %>
+        </tbody>
+    </table>
+<% else %>
+    ホーム画面
+<% end %>
