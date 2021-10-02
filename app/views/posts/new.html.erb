@@ -1,6 +1,6 @@
 <H1>新規投稿画面</H1>
 <%= form_for(@post) do |f| %>
-    <%= f.text_area :title, :placeholder => "タイトルを入れてね" %>
-    <%= f.text_area :content, :placeholder => "ここに何か入力してね" %>
+    <%= f.text_area :title, :placeholder => "タイトルを入れてね" , class: "form-control" %><br>
+    <%= f.text_area :content, :placeholder => "ここに何か入力してね" , class: "form-text" %>
     <%= f.submit "新規投稿", class: "btn btn-primary" %>
 <% end %>

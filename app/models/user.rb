@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   has_many :posts
-  has_many :posts, dependent: :destroy
   mount_uploader :image, ImageUploader
   attr_accessor :remember_token
   validates :name, presence: true 

@@ -4,8 +4,11 @@
     <table class="table table-hover">
         <tbody>
             <% @post.each do |post| %>
-                <%= post.title %>
-                <%= post.content %>
+                <tr>
+                <td><%= current_user.name %>
+                <%= link_to post.title , posts_show_path(post) %><br>
+                <%= post.content %></td>
+                </tr>
             <% end %>
         </tbody>
     </table>

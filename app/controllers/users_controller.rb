@@ -26,7 +26,16 @@ class UsersController < ApplicationController
     end
   end
   def index
+    @user=User.where(resign: false)
   end
+
+  def resign
+    user=User.find_by(id:params[:id])
+    user.resign =true
+    user.save
+    redirect_to index_path
+  end
+
   def edit
     @user = User.find(params[:id])
     p "==================="

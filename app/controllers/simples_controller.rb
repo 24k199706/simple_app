@@ -1,7 +1,7 @@
 class SimplesController < ApplicationController
   def home
     if logged_in?
-      @post=Post.where(user_id: 1)
+      @post=Post.all
     end
   end
 end
