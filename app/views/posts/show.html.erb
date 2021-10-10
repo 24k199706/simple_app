@@ -1,3 +1,11 @@
-<h1>投稿詳細</h1>
-    <%= @post.title %>
-    <%= @post.content %>
+<main class="container">
+    <div class="starter-template text-center py-5 px-3">
+        <h3><%= @post.title %></h3>
+        <%= @post.content %>
+            <% if current_user.id == @post.user_id %>
+                <%= link_to "編集" , posts_edit_path(@post) %>
+                <%= link_to "delete", @post, method: :delete,
+                                       data: { confirm: "本当に投稿を削除しますか？" } %>
+            <% end %>
+    </div>
+</main>

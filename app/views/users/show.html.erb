@@ -1,18 +1,22 @@
 <h1></h1>
  <% if @user.image.url ==nil %>
-  <%= gravatar_for @user %>
+  <%= gravatar_for current_user %>
 <% else %>
   <%= image_tag @user.image.url :size =>'320x480' %>  
 <% end %>
 <%= @user.name %>
 <%= link_to "編集", edit_path(current_user) %><br>
-<%= @user.content %>
+</section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+</section>
+<h6><%= @user.content %><h6>
 <h3>過去の投稿履歴</h3>
   <table class="table table-hover">
         <tbody>
             <% @user.posts.each do |post| %>
                 <tr>
-                <td><%= link_to post.title , posts_edit_path(post) %><br>
+                <td><h6><%= link_to post.title , posts_edit_path(post) %><h6>
                 <%= post.content %></td>
                 </tr>
                 

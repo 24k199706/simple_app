@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :image
       t.integer :sns_type
       t.boolean :admin
+      t.boolean :resign
 
       t.timestamps
     end

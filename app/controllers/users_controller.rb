@@ -1,15 +1,18 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update ,:following, :followers]
   before_action :correct_user,   only: [:edit, :update]
+  #プロフィール画面のコントローラ側
   def show
     p "==================="
     p params
     p "==================="
     @user=User.find(params[:id])
   end
+  #新規登録画面のコントローラ側
   def new
     @user=User.new
   end
+  #新規登録の処理
   def creat
     @user=User.new(user_params)
     p "==================="
@@ -25,23 +28,30 @@ class UsersController < ApplicationController
       render "new"
     end
   end
+  #ユーザの論理削除の検証→今後削除予定(退会ボタンを押したら論理削除されるようにするため)
   def index
-    @user=User.where(resign: false)
+    @user=User.where(resign: false).or(User.where(resign: nil))
   end
 
+  #論理削除の処理
   def resign
     user=User.find_by(id:params[:id])
+      user.posts.each do |post|
+        post.delete_flg =true
+        post.sava
+      end
     user.resign =true
     user.save
     redirect_to index_path
   end
-
+  #プロフィール編集画面
   def edit
     @user = User.find(params[:id])
     p "==================="
     p params
     p "==================="
-  end 
+  end
+  #プロフィール更新処理
   def update
     @user = User.find(params[:id])
     p "==================="
@@ -52,10 +62,24 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
-    
-
   end
-
+  #フォロページの処理
+  def following
+    @title = "Following"
+    @user=User.find_by(id: params[:id])
+    @users=@user.following
+    render "show_follow"
+  end
+  #フォロワーページの処理
+  def followers
+    @title = "Followers"
+    @user=User.find_by(id: params[:id])
+    p "==================="
+    p @user
+    p "==================="
+    @users=@user.follow
+    render "show_follow"
+  end
 
   private
     #strongparams設定

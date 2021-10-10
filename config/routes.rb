@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   post "/users", to: "users#creat",as:"creat"
   get '/users/index', to: "users#index" ,as:"index"#フォローしているユーザ一覧
   get '/users/:id', to: "users#show",as:"user"#プロフィール詳細画面
-  get '/users/:id/edit', to: "users#edit",as:"edit"#プロフィール編集画面
-  patch '/users/:id/edit', to: "users#update" ,as:"update"#プロフィール更新画面
+  get '/users/:name/edit', to: "users#edit",as:"edit"#プロフィール編集画面
+  patch '/users/:name/edit', to: "users#update" ,as:"update"#プロフィール更新画面
   delete '/users/:id', to: "users#destory",as: "delete"#ログアウト
   delete "/resign/:id", to: "users#resign",as:"resign"#ユーザの退会のための論理削除
 
@@ -24,9 +24,14 @@ Rails.application.routes.draw do
   get "/posts/:id/edit", to:"posts#edit",as:"posts_edit"#投稿編集画面
   patch "/posts/:id",to:"posts#update", as:"posts_update"#投稿のアップデート
   post "/posts",to:"posts#creat",as: "posts_creat"
-  delete "/posts/:id", to:"posts#destory" , as: "posts_delete"
-  resources :users
+  delete "/posts/:id", to:"posts#destroy" , as: "posts_delete"
+  resources :users do
+    member do
+      get :following , :followers
+    end
+  end
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,          only: [:create, :destroy]
+  resources :relationships,       only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
