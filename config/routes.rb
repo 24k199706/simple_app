@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   get '/users/new', to: "users#new", as:"new" #新規登録画面
   post "/users", to: "users#creat",as:"creat"
   get '/users/index', to: "users#index" ,as:"index"#フォローしているユーザ一覧
-  get '/users/:id', to: "users#show",as:"user"#プロフィール詳細画面
+  get '/users/mypage', to: "users#show",as:"mypage"#プロフィール詳細画面
+  get '/users/:name', to: "users#show",as:"user"
   get '/users/:name/edit', to: "users#edit",as:"edit"#プロフィール編集画面
   patch '/users/:name/edit', to: "users#update" ,as:"update"#プロフィール更新画面
   delete '/users/:id', to: "users#destory",as: "delete"#ログアウト

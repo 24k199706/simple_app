@@ -3,10 +3,14 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   #プロフィール画面のコントローラ側
   def show
+    if params[:name]
+      @user = User.find_by(name: params[:name])
+    else
+      @user=User.find(current_user.id)
+    end
     p "==================="
     p params
     p "==================="
-    @user=User.find(params[:id])
   end
   #新規登録画面のコントローラ側
   def new
@@ -46,10 +50,15 @@ class UsersController < ApplicationController
   end
   #プロフィール編集画面
   def edit
-    @user = User.find(params[:id])
+    if params[:name]
+      @user = User.find_by(name: params[:name])
+    else
+      @user=User.find(current_user.id)
+    end
     p "==================="
     p params
     p "==================="
+
   end
   #プロフィール更新処理
   def update
@@ -77,7 +86,7 @@ class UsersController < ApplicationController
     p "==================="
     p @user
     p "==================="
-    @users=@user.follow
+    @users=@user.followers
     render "show_follow"
   end
 
@@ -95,7 +104,7 @@ class UsersController < ApplicationController
       end
     end
     def correct_user
-      @user = User.find(params[:id])
+      @user = User.find_by(name: params[:name])
       redirect_to(root_url) unless @user == current_user
     end
 

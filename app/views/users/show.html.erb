@@ -1,12 +1,11 @@
 <h1></h1>
- <% if @user.image.url ==nil %>
-  <%= gravatar_for current_user %>
-<% else %>
-  <%= image_tag @user.image.url :size =>'320x480' %>  
-<% end %>
+ <%# if @user.image.url ==nil %>
+  <%=  gravatar_for current_user %>
+<%# else %>
+  <%=# image_tag @user.image.url :size =>'320x480' %>  
+<%# end %>
 <%= @user.name %>
 <%= link_to "編集", edit_path(current_user) %><br>
-</section>
       <section class="stats">
         <%= render 'shared/stats' %>
 </section>
