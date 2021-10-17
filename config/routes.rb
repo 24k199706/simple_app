@@ -26,11 +26,7 @@ Rails.application.routes.draw do
   patch "/posts/:id",to:"posts#update", as:"posts_update"#投稿のアップデート
   post "/posts",to:"posts#creat",as: "posts_creat"
   delete "/posts/:id", to:"posts#destroy" , as: "posts_delete"
-  resources :users do
-    member do
-      get :following , :followers
-    end
-  end
+  post "/posts/:id", to:"comments#creat",as:"comment_creat"
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]

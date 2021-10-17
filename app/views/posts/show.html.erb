@@ -8,4 +8,15 @@
                                        data: { confirm: "本当に投稿を削除しますか？" } %>
             <% end %>
     </div>
+    <div>
+        <% @post.comments.each do |comment| %>
+            <%= comment.comment_content %>|<%=comment.user.name %>
+        <% end %>
+    </div>
+    <%= form_for @comment , url: comment_creat_path do |f|  %>
+        <%= f.text_area :comment_content %>
+        <input type="hidden" name= "comment[user_id]" value="<%=current_user.id %>">
+        <input type="hidden" name= "comment[post_id]" value="<%=@post.id %>">
+        <%= f.submit %>        
+    <% end %>
 </main>

@@ -72,23 +72,7 @@ class UsersController < ApplicationController
       render "edit"
     end
   end
-  #フォロページの処理
-  def following
-    @title = "Following"
-    @user=User.find_by(id: params[:id])
-    @users=@user.following
-    render "show_follow"
-  end
-  #フォロワーページの処理
-  def followers
-    @title = "Followers"
-    @user=User.find_by(id: params[:id])
-    p "==================="
-    p @user
-    p "==================="
-    @users=@user.followers
-    render "show_follow"
-  end
+  
 
   private
     #strongparams設定
