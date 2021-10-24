@@ -62,7 +62,7 @@ class UsersController < ApplicationController
   end
   #プロフィール更新処理
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by(name: params[:name])
     p "==================="
     p @user.errors.full_messages
     p "==================="

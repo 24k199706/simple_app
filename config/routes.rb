@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   post "/posts",to:"posts#creat",as: "posts_creat"
   delete "/posts/:id", to:"posts#destroy" , as: "posts_delete"
   post "/posts/:id", to:"comments#creat",as:"comment_creat"
+  delete "/posts/:id", to:"comments#destroy" , as: "comment_delete"
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]

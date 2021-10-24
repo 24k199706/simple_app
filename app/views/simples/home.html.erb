@@ -1,16 +1,18 @@
 <!--ログインしているときの処理 -->
 <% if logged_in? %>
     <main class="container">
-        <div class="starter-template text-center py-5 px-3">
+        <div class="starter-template  py-5 px-3">
             <table class="table table-hover">
+        </div>
             <tbody>
                     <% @post.each do |post| %>
                     <tr>
                         <!--名前を表示させて、投稿した人のプロフィール画面に飛ばすリンク-->
-                        <td><%= link_to post.user.name ,user_path(post.user.name) %>
-                        <%= image_tag post.user.image.url %>
-                        <h6><%= link_to post.title , posts_show_path(post) %><h6>
+                        <td class="table-light"><%= link_to post.user.name ,user_path(post.user.name) %>
+                        <%= image_tag post.user.image.url , :size =>'80x80' %> 
+                        <%= link_to post.title , posts_show_path(post) %><br>
                         <%= post.content %></td>
+                        
                     </tr>
                     <% end %>
             </tbody>

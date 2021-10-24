@@ -1,8 +1,11 @@
-<h1></h1>
-  <%=  gravatar_for current_user %>
+<% if @user.image.url ==nil %>
+  <%= gravatar_for current_user %>
+<% else %>
+  <%= image_tag @user.image.url :size =>'100x100' %> 
+<% end %>
 <%= @user.name %>
 <% if current_user.id ==@user.id %>
-  <%= link_to "編集", edit_path(current_user) %><br>
+  <%= link_to "編集", edit_path %><br>
 <% end %>
 <h6><%= @user.content %><h6>
 <h3>過去の投稿履歴</h3>
