@@ -67,7 +67,10 @@ class UsersController < ApplicationController
     p @user.errors.full_messages
     p "==================="
     if @user.update(user_params)
-      redirect_to @user
+      p "==================="
+      p "成功"
+      p "==================="
+      redirect_to user_path(@user.name)
     else
       render "edit"
     end

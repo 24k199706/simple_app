@@ -26,8 +26,11 @@ Rails.application.routes.draw do
   patch "/posts/:id",to:"posts#update", as:"posts_update"#投稿のアップデート
   post "/posts",to:"posts#creat",as: "posts_creat"
   delete "/posts/:id", to:"posts#destroy" , as: "posts_delete"
-  post "/posts/:id", to:"comments#creat",as:"comment_creat"
+  post "/posts/:id", to:"comments#creat",as:"comment_creat"#コメント昨日
   delete "/posts/:id", to:"comments#destroy" , as: "comment_delete"
+  post "/posts/:id", to:"posts#creat" ,as:"like_creat"
+  delete "/posts/:id",to:"posts#destroy",as:"like_destory"
+
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]

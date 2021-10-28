@@ -1,3 +1,4 @@
+<title>Letter traveler</title>
 <!--ログインしているときの処理 -->
 <% if logged_in? %>
     <main class="container">
@@ -8,15 +9,28 @@
                     <% @post.each do |post| %>
                     <tr>
                         <!--名前を表示させて、投稿した人のプロフィール画面に飛ばすリンク-->
-                        <td class="table-light"><%= link_to post.user.name ,user_path(post.user.name) %>
-                        <%= image_tag post.user.image.url , :size =>'80x80' %> 
-                        <%= link_to post.title , posts_show_path(post) %><br>
-                        <%= post.content %></td>
-                        
+                        <div class="d-flex text-muted pt-3">
+                            <tr><%= image_tag post.user.image.url , :size =>'80x80' %>
+                        <p class="pb-3 mb-0 small lh-sm border-bottom">
+                            <strong class="d-block text-gray-dark">
+                                <%= link_to post.user.name ,user_path(post.user.name) %>
+                            </strong> 
+                            <%= link_to post.title , posts_show_path(post) %><br>
+                            <%= post.content %></td>
+                            <% if current_user.liked_by?(post.id) %>
+                                <td><%= link_to 'いいねを外す', like_destory_path(post), method: :DELETE %></td>
+                            <% else %>
+                                <td><%= link_to 'いいね', like_creat_path(post), method: :POST %></td>
+                            <% end %>
+                        </p>
                     </tr>
                     <% end %>
             </tbody>
             </table>
+        
+        <input type="hidden" name="like[post_id]" value="<%=@post.id %>">
+        <input type="hidden" name="like[user_id]" value="<%=current_user.id %>">
+        <input type="hidden" name="like[comment_id]" value="<%=@comment.id %>">
 <% else %>
 <!--ログインしていないときの画面表示-->
     ホーム画面

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :posts
   has_many :comments
+  has_many :likes
   mount_uploader :image, ImageUploader
   attr_accessor :remember_token
   validates :name, presence: true 
@@ -28,5 +29,9 @@ class User < ApplicationRecord
   #ユーザ情報を廃棄する（ログアウト時に）
   def forget
     update_attribute(:remember_digest, nil)
+  end
+  
+  def liked_by?(post_id)
+    likes.where(post_id: post_id).exists?
   end
 end
