@@ -26,10 +26,14 @@ Rails.application.routes.draw do
   patch "/posts/:id",to:"posts#update", as:"posts_update"#投稿のアップデート
   post "/posts",to:"posts#creat",as: "posts_creat"
   delete "/posts/:id", to:"posts#destroy" , as: "posts_delete"
-  post "/posts/:id", to:"comments#creat",as:"comment_creat"#コメント昨日
-  delete "/posts/:id", to:"comments#destroy" , as: "comment_delete"
-  post "/posts/:id", to:"likes#creat" ,as:"like_creat"
-  delete "/posts/:id",to:"likes#destroy",as:"like_destory"
+
+  post "/comments/:id", to:"comments#creat",as:"comment_creat"#コメント
+  delete "/comments/:id", to:"comments#destroy" , as: "comment_delete"
+
+  post "/comment_likes/:comment_id/:user_id", to:"likes#comment_creat" ,as:"like_comment_creat"
+  post "/post_likes/:post_id/:user_id", to:"likes#post_creat" ,as:"like_post_creat"
+  delete "/likes/:post_id/:user_id",to:"likes#destroy",as:"like_destory"
+  delete "/likes/:user_id/:comment_id",to:"likes#comment_like_destroy" ,as:"comment_like_creat"
 
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,          only: [:create, :destroy]

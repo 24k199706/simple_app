@@ -7,14 +7,11 @@
                 <%= link_to "delete", @post, method: :delete,
                                        data: { confirm: "本当に投稿を削除しますか？" } %>
             <% end %>
-        <% if current_user.liked_by?(@post) %>
-            <%= link_to 'いいねを外す', like_destory_path(@post), method: :DELETE %></td>
+        <% if current_user.liked_by?(@post,nil) %>
+            <%= link_to 'いいねを外す', like_destory_path(@post,current_user.id), method: :DELETE %></td>
         <% else %>
-            <%= link_to 'いいね', like_creat_path(@post), method: :POST %></td>
+            <%= link_to 'いいね', like_creat_path(@post,current_user.id), method: :POST %></td>
         <% end %>
-        <input type="hidden" name="like[post_id]" value="<%=@post %>">
-        <input type="hidden" name="like[user_id]" value="<%=current_user.id %>">
-        <input type="hidden" name="like[comment_id]" value="<%=@comment %>">
     </div>
     <div>
         <% @post.comments.each do |comment| %>
@@ -28,7 +25,7 @@
     </div>
     <%= form_for @comment , url: comment_creat_path do |f|  %>
         <textarea aria-label="コメントを追加…" placeholder="コメントを追加…" class="Ypffh"name="comment[comment_content]" autocomplete="off" autocorrect="off" style="height: 30px !important;"></textarea>
-        <input type="hidden" name="comment[post_id]" value="<%=@post %>">
+        <input type="hidden" name="comment[post_id]" value="<%=@post.id %>">
         <input type="hidden" name="comment[user_id]" value="<%=current_user.id %>">
         <%= f.submit %>        
     <% end %>
