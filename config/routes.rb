@@ -28,8 +28,8 @@ Rails.application.routes.draw do
   delete "/posts/:id", to:"posts#destroy" , as: "posts_delete"
   post "/posts/:id", to:"comments#creat",as:"comment_creat"#コメント昨日
   delete "/posts/:id", to:"comments#destroy" , as: "comment_delete"
-  post "/posts/:id", to:"posts#creat" ,as:"like_creat"
-  delete "/posts/:id",to:"posts#destroy",as:"like_destory"
+  post "/posts/:id", to:"likes#creat" ,as:"like_creat"
+  delete "/posts/:id",to:"likes#destroy",as:"like_destory"
 
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,          only: [:create, :destroy]

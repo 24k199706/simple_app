@@ -16,7 +16,6 @@ class CommentsController < ApplicationController
         @comment.destroy
             flash.now[:success] = "返信を削除しました。"
             redirect_to  posts_show_path
-        end
     end
 
     private
