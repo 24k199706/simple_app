@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   delete "/posts/:id", to:"posts#destroy" , as: "posts_delete"
 
   post "/comments/:id", to:"comments#creat",as:"comment_creat"#コメント
-  delete "/comments/:id", to:"comments#destroy" , as: "comment_delete"
+  delete "/comments/:id", to:"comments#destroy" , as: "comment_delete"#コメント削除
 
   post "/comment_likes/:comment_id/:user_id", to:"likes#comment_creat" ,as:"like_comment_creat"
   post "/post_likes/:post_id/:user_id", to:"likes#post_creat" ,as:"like_post_creat"

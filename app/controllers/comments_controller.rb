@@ -13,9 +13,11 @@ class CommentsController < ApplicationController
     p "==================="
     end
     def destory
-        @comment.destroy
-            flash.now[:success] = "返信を削除しました。"
-            redirect_to  posts_show_path
+        @comment=Comment.find_by(user_id: params[:user_id] , post_id: params[:post_id])
+        @comment.regin= true
+        @comment.save
+        flash.now[:success] = "投稿を削除しました。"
+        redirect_to posts_show_path
     end
 
     private

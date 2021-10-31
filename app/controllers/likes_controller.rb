@@ -6,7 +6,7 @@ class LikesController < ApplicationController
         
     end
     def comment_creat
-        like=Like.new(user_id: params[:user_id] , post_id: params[:post_id])
+        @like=Like.new(user_id: params[:user_id] , post_id: params[:post_id])
         like_creat @like
         
     end
@@ -20,7 +20,7 @@ class LikesController < ApplicationController
 
     
     def like_creat(like)
-        if @like.save
+        if like.save
             redirect_to posts_show_path
         else
             render "posts/show"

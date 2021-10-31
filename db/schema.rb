@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2021_10_27_113122) do
     t.text "comment_content"
     t.integer "user_id"
     t.integer "post_id"
+    t.boolean "resign"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 2021_10_27_113122) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "content"
+    t.string "image"
     t.integer "user_id"
     t.integer "tag_id"
     t.boolean "delete_flg"
@@ -45,16 +47,6 @@ ActiveRecord::Schema.define(version: 2021_10_27_113122) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["followed_id"], name: "index_relationships_on_followed_id"
-    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
-    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "tags", force: :cascade do |t|

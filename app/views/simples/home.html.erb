@@ -10,10 +10,13 @@
                     <tr>
                         <!--名前を表示させて、投稿した人のプロフィール画面に飛ばすリンク-->
                         <div class="d-flex text-muted pt-3">
-                            <% if image_tag post.user.image.url %>
-                                <%= gravatar_for current_user %>
+                            <% if post.user.image.url %>
+                                <%= image_tag post.user.image.url , :size =>'80x80' %>    
                             <% else %>
-                                <td><%= image_tag post.user.image.url , :size =>'80x80' %>
+                                <%= gravatar_for current_user %>
+                            <% end %>
+                            <%if post.image.url %>
+                                <%= image_tag post.image.url , :size =>'200x200' %>
                             <% end %>
                             <%= link_to post.user.name ,user_path(post.user.name) %>
                             <%= link_to post.title , posts_show_path(post) %>

@@ -20,6 +20,7 @@ class PostsController < ApplicationController
         @post=Post.find(params[:id])
         @comment=Comment.new
         @like=Like.new
+        @comment_delete = Comment.where(delete_flg: nil).or(Comment.where.not(delete_flg: true))
         p "==================="
         p @comment
         p "==================="
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
 
     private
         def posts_params
-            params.require(:post).permit(:content ,:title)
+            params.require(:post).permit(:content ,:title, :image)
         end
 
         def correct_user

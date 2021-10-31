@@ -3,6 +3,8 @@
     <div class="starter-template text-center py-5 px-3">
         <%= form_for(@post) do |f| %>
             <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">投稿画像</label>
+            <%= f.file_field :image %><br>
             <label for="exampleFormControlInput1" class="form-label">タイトル</label>
             <%= f.text_area :title, :placeholder => "タイトルを入れてね" , class: "form-control" %><br>
             </div>
