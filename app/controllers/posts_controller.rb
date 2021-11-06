@@ -6,9 +6,9 @@ class PostsController < ApplicationController
     end
     def creat
         @post=current_user.posts.build(posts_params)
-    p "==================="
-    p @post.errors.full_messages
-    p "==================="
+        p "==================="
+        p @post.errors.full_messages
+        p "==================="
         if @post.save
             redirect_to root_path
         else
@@ -49,6 +49,7 @@ class PostsController < ApplicationController
         flash.now[:success] = "投稿を削除しました。"
         redirect_to  root_url
     end
+
 
     private
         def posts_params

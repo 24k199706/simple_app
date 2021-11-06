@@ -34,19 +34,19 @@ class UsersController < ApplicationController
   end
   #ユーザの論理削除の検証→今後削除予定(退会ボタンを押したら論理削除されるようにするため)
   def index
-    @user=User.where(resign: false).or(User.where(resign: nil))
+    
   end
 
   #論理削除の処理
   def resign
     user=User.find_by(id:params[:id])
-      user.posts.each do |post|
+      user.posts.each do|post|
         post.delete_flg =true
-        post.sava
+        post.save
       end
     user.resign =true
     user.save
-    redirect_to index_path
+    redirect_to root_path
   end
   #プロフィール編集画面
   def edit
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
     #strongparams設定
     def user_params
       params.require(:user).permit(:name, :email, :password,:content, :image,
-                                   :password_confirmation)
+                                   :password_confirmation,:remove_img)
     end
     #以下beforeアクションのメソッド
     def logged_in_user

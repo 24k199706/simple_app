@@ -1,6 +1,9 @@
 <main class="container">
     <div class="starter-template  py-5 px-3">
         <h3><%= @post.title %></h3>
+        <%if @post.image.url %>
+            <%= image_tag @post.image.url , :size =>'200x200' %><br>
+        <% end %>
         <%= @post.content %>
             <% if current_user.id == @post.user_id %>
                 <%= link_to "編集" , posts_edit_path(@post) %>

@@ -4,7 +4,7 @@
       <% if @user.image.url ==nil %>
         <%= gravatar_for current_user %>
       <% else %>
-        <%= image_tag @user.image.url :size =>'100x100' %> 
+        <%= image_tag @user.image.url :size =>'50x50' %> 
       <% end %>
       <div class="col-md-7 order-md-2"> 
         <div class= 'featurette-heading'>     
@@ -25,6 +25,9 @@
           <% @user.posts.each do |post| %>
             <tr>
             <td><h6><%= link_to post.title , posts_edit_path(post) %><h6>
+            <%if post.image.url %>
+              <%= image_tag post.image.url , :size =>'200x200' %>
+            <% end %>
             <%= post.content %></td>
             </tr>
           <% end %>

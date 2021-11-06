@@ -2,6 +2,12 @@
     <main class="container">
         <div class="starter-template text-center py-5 px-3">
             <%= form_for(@post) do |f| %>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">投稿画像</label>
+                <%= f.file_field :image %><br>
+            </div>
+            <%= image_tag @post.image.url id: :image_prv if @post.image? %>
+            <p><%= f.check_box :remove_image %>画像を削除する</p>
                 <div class="mb-3">
                     <%= f.text_area :title , class: "form-control" %>
                 </div>

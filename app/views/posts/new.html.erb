@@ -3,14 +3,16 @@
     <div class="starter-template text-center py-5 px-3">
         <%= form_for(@post) do |f| %>
             <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">投稿画像</label>
-            <%= f.file_field :image %><br>
-            <label for="exampleFormControlInput1" class="form-label">タイトル</label>
-            <%= f.text_area :title, :placeholder => "タイトルを入れてね" , class: "form-control" %><br>
+                <label for="exampleFormControlInput1" class="form-label" >投稿画像</label>
+                <%= f.file_field :image %><br>
             </div>
             <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">本文</label>
-            <textarea placeholder="ここに何か入力してね" class="form-control exampleFormControlTextarea1" name="post[content]"  rows="20"></textarea>
+                <label for="exampleFormControlInput1" class="form-label">タイトル</label>
+                <textarea oninput="check_input()" placeholder="タイトルを入れてね" class="form-control" id="title" name="post[title]"></textarea><br>            
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">本文</label>
+                <textarea  oninput="check_input()" placeholder="ここに何か入力してね" class="form-control exampleFormControlTextarea1" name="post[content]"  rows="20"></textarea>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <%= f.submit "新規投稿", class: "btn btn-primary" %>
