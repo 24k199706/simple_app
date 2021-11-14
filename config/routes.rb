@@ -11,13 +11,16 @@ Rails.application.routes.draw do
   patch "	/password_resets/<token>",to: "password_resets#update", as:"pass_update"
 
   get '/users/new', to: "users#new", as:"new" #新規登録画面
+  get "/renew", to:"user#renew",as:"renew"#再登録
+  post "/reupdate",to:"user#reupdate",as:"reupdate"
   post "/users", to: "users#creat",as:"creat"
   get '/users/mypage', to: "users#show",as:"mypage"#プロフィール詳細画面
   get '/users/:name', to: "users#show",as:"user"
-  get '/users/:name/edit', to: "users#edit",as:"edit"#プロフィール編集画面
-  patch '/users/:name/edit', to: "users#update" ,as:"update"#プロフィール更新画面
+  get '/users/:id/edit', to: "users#edit",as:"edit"#プロフィール編集画面
+  patch '/users/:id/edit', to: "users#update" ,as:"update"#プロフィール更新画面
   delete '/users/:id', to: "users#destory",as: "delete"#ログアウト
   delete "/resign/:id", to: "users#resign",as:"resign"#ユーザの退会のための論理削除
+
 
   get "/posts/new", to:"posts#new", as:"posts_new"#新規投稿ページ
   get "/posts/:id", to:"posts#show", as:"posts_show"#投稿詳細ページ

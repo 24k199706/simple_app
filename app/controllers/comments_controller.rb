@@ -12,12 +12,12 @@ class CommentsController < ApplicationController
     p @comment.errors.full_messages
     p "==================="
     end
-    def destory
-        @comment=Comment.find_by(user_id: params[:user_id] , post_id: params[:post_id])
-        @comment.regin= true
+    def destroy
+        @comment=Comment.find_by(id: params[:id])
+        @comment.resign= true
         @comment.save
         flash.now[:success] = "投稿を削除しました。"
-        redirect_to posts_show_path
+        redirect_to posts_show_path(@comment.post.id)
     end
 
     private

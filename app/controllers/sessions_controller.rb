@@ -7,13 +7,16 @@ class SessionsController < ApplicationController
     p "==================="
     p params
     p "==================="
-    if user && user.authenticate(params[:session][:password])
+    if user.resign != true
+      if user && user.authenticate(params[:session][:password])
     # ユーザーログイン後にユーザー情報のページにリダイレクトする
-      log_in user
-      redirect_to root_path
-    else
-      flash.now[:danger] = 'Invalid name/password combination'
-      render "new"
+        log_in user
+        redirect_to root_path
+      else
+        flash.now[:danger] = 'Invalid name/password combination'
+        render "new"
+      end
+      redirect_to renew_path
     end
   end
   def destory

@@ -1,0 +1,6 @@
+<h2>再度会員登録</h2>
+    <h1>また会員になりますか？</h1>
+    <%= form_for :renew, url: reupdate_path do |f| %>
+        Email入力してね。<%= f.text_field :email %>
+    <%= f.submit %>
+<% end %>

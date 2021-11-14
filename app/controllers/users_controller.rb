@@ -32,10 +32,21 @@ class UsersController < ApplicationController
       render "new"
     end
   end
-  #ユーザの論理削除の検証→今後削除予定(退会ボタンを押したら論理削除されるようにするため)
-  def index
-    
+
+  def renew
+
   end
+
+  def reupdate#再登録処理
+    @user = User.find_by(email: params[:renew][:email])
+    if @user
+      @user.resign = false
+      @user.save
+      log_in @user
+      redirect_to root_path
+    end
+  end
+
 
   #論理削除の処理
   def resign
@@ -46,12 +57,13 @@ class UsersController < ApplicationController
       end
     user.resign =true
     user.save
+    log_out
     redirect_to root_path
   end
   #プロフィール編集画面
   def edit
     if params[:name]
-      @user = User.find_by(name: params[:name])
+      @user = User.find_by(id: params[:id])
     else
       @user=User.find(current_user.id)
     end
@@ -62,7 +74,7 @@ class UsersController < ApplicationController
   end
   #プロフィール更新処理
   def update
-    @user = User.find_by(name: params[:name])
+    @user = User.find_by(id: params[:id])
     p "==================="
     p @user.errors.full_messages
     p "==================="
@@ -76,7 +88,6 @@ class UsersController < ApplicationController
     end
   end
   
-
   private
     #strongparams設定
     def user_params
