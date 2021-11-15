@@ -4,40 +4,37 @@
     <main class="container">
         <div class="starter-template  py-5 px-3">
             <table class="table table-hover" >
-        </div>
-            <tbody>
-                    <% @post.each do |post| %>
-                    <tr>
-                        <!--名前を表示させて、投稿した人のプロフィール画面に飛ばすリンク-->
-                        <div class="card shadow-sm">
-                        <td><% if post.user.image.url %>
-                                <%= image_tag post.user.image.url , :size =>'32x32' %>    
-                            <% else %>
-                                <%= gravatar_for current_user %>
-                            <% end %>
-                            <%= link_to post.user.name ,user_path(post.user.name) %>
-                            <h3><%= link_to post.title , posts_show_path(post) %></h3>
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                            <p class="card-text"><%= post.content %></p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                            <small class="text-muted">タイムスタンプ</small></td>
-                        </div>
-                    </div>
-                </div>
-                            
-                <%if post.image.url %>
-                    <%= image_tag post.image.url%>
-                <% end %>   
-                </div>
-                    </tr>
-                    <% end %>
-                    
-            </tbody>
+                <tbody>
+                        <% @post.each do |post| %>
+                        <tr>
+                            <!--名前を表示させて、投稿した人のプロフィール画面に飛ばすリンク-->
+                            <div class="card shadow-sm">
+                                <td>
+                                    <% if post.user.image.url %>
+                                        <%= image_tag post.user.image.url , :size =>'32x32' %>    
+                                    <% else %>
+                                       <%= gravatar_for current_user %>
+                                    <% end %>
+                                    <%= link_to post.user.name ,user_path(post.user.name) %>
+                                    <h3><%= link_to post.title , posts_show_path(post) %></h3>
+                                    <%if post.image.url %>
+                                        <%= image_tag post.image.url , :size =>"320x240" %>
+                                    <% else %>
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                                    <% end %>
+                                    <div class="card-body">
+                                        <p class="card-text"><%= post.content %></p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                    <small class="text-muted"><%=post.created_at %></small>
+                                    </div>
+                                    </div>
+                                </td>
+                        <% end %>
+                    </tbody>
             </table>
+    </main>
 <% else %>
 <!--ログインしていないときの画面表示-->
-    ホーム画面
-    </main>
+Letter traveler
 <% end %>

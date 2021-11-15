@@ -1,53 +1,51 @@
 <main class="container">
     <div class="starter-template  py-5 px-3">
         <h3><%= @post.title %></h3>
-        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                            <p class="card-text"><%= @post.content %></p></td>
-                            <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                            <small class="text-muted">タイムスタンプ</small>
-                        </div>
-                    </div>
+
         <%if @post.image.url %>
-            <%= image_tag @post.image.url , :size =>'200x200' %><br>
-        <% end %>
-            <% if current_user.id == @post.user_id %>
-                <%= link_to "編集" , posts_edit_path(@post) %>
-                <%= link_to "delete", @post, method: :delete,
-                                       data: { confirm: "本当に投稿を削除しますか？" } %>
-            <% end %>
-        <% if current_user.liked_by?(@post,nil) %>
-            <%= link_to 'いいねを外す', like_destory_path(@post,current_user.id), method: :DELETE %></td>
+            <%= image_tag @post.image.url , :size =>"320x240" %>
         <% else %>
-            <%= link_to 'いいね', like_creat_path(@post,current_user.id), method: :POST %></td>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
         <% end %>
+        <% if current_user.id == @post.user_id %>
+            <%= link_to "編集" , posts_edit_path(@post) %>
+            <%= link_to "delete", @post, method: :delete,
+                                       data: { confirm: "本当に投稿を削除しますか？" } %>
+        <% end %>
+        <div class="card-body">
+            <p class="card-text"><%= @post.content %></p>
+        <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+        </div>
+        </div>
+        <% if current_user.liked_by?(@post,nil) %>
+            <%= link_to 'いいねを外す', like_destory_path(@post,current_user.id), method: :DELETE %><br>
+        <% else %>
+            <%= link_to 'いいね', like_post_creat_path(@post,current_user.id), method: :POST %><br>
+        <% end %>
+        <small class="text-muted"><%=@post.created_at %></small>
     </div>
+
     <div>
-        <table class="table table-hover">
-            <tbody>
+        <table class="table" >
                 <tr>
                     <% @post.comments.each do |comment| %>
-                        <% if comment.user_id == current_user.id %>
+                    <% if comment.user_id == current_user.id %>
                             <% if comment.resign !=true %>
-                                
-                                <td><%= link_to "delete", comment_delete_path(comment.id) , method: :delete,
+                                    <td><%= link_to "delete", comment_delete_path(comment.id) , method: :delete,
                                        data: { confirm: "返信を削除しますか？" } %>
-                                <%= link_to(comment.user.name,mypage_path) %>|<%= comment.comment_content %>
-                                <svg aria-label="その他のオプション" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="1.5"></circle><circle cx="6.5" cy="12" r="1.5"></circle><circle cx="17.5" cy="12" r="1.5">
-                                </circle></svg>
-                                </td>
-                            <% end %>
-                        <% end %>
+            
+                                    <%= comment.comment_content %>|<%= link_to(comment.user.name,mypage_path) %>
+                            <% end %></td>
                     <% end %>
-                </tr>
-            </tbody>
+                    <% end %>
+                </tr>    
         </table>
     </div>
     <%= form_for @comment , url: comment_creat_path do |f|  %>
-        <textarea oninput="check_input()" placeholder="コメントする" class="form-control" id="title" name="post[title]"></textarea>
+        <textarea aria-label="コメントを追加…" placeholder="コメントを追加…" class="Ypffh"name="comment[comment_content]" autocomplete="off" autocorrect="off" style="height: 30px !important;"></textarea>
         <input type="hidden" name="comment[post_id]" value="<%=@post.id %>">
         <input type="hidden" name="comment[user_id]" value="<%=current_user.id %>">
-        <%= f.submit "新規投稿", class: "btn btn-primary" %>        
+        <%= f.submit %>        
     <% end %>
 </main>

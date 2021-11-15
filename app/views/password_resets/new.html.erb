@@ -1,2 +1,12 @@
 <h1>PasswordResets#new</h1>
 <p>Find me in app/views/password_resets/new.html.erb</p>
+<%= form_for :password_question, url: user_find_path do |f| %>
+  <%= f.email_field :email %>
+  <select name="password_question[select]">
+  <% Password_Question.all.each do |q| %>
+    <option value="<%= q.id %>"><%= q.name %></option>
+  <% end %>
+  </select>
+  <%= f.text_field :answer %>
+  <%= f.submit %>
+<% end %>

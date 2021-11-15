@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :likes
+  has_many :password_answers
   mount_uploader :image, ImageUploader
   attr_accessor :remember_token
   validates :name, presence: true 
@@ -32,6 +33,6 @@ class User < ApplicationRecord
   end
   
   def liked_by?(post_id=nil, comment_id=nil)
-    Like.where(post_id: post_id) or (Like.where(comment_id: comment_id)).exists?
+    Like.where(post_id: post_id).or(Like.where(comment_id: comment_id)).exists?
   end
 end

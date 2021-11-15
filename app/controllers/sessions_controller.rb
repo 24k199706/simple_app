@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
         flash.now[:danger] = 'Invalid name/password combination'
         render "new"
       end
+    else
       redirect_to renew_path
     end
   end
