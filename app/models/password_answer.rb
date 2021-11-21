@@ -1,4 +1,4 @@
 class PasswordAnsnwer < ApplicationRecord
-    belongs_to_active_hash :password_question
+    extend ActiveHash::Associations::ActiveRecordExtensions
     belongs_to :user
 end

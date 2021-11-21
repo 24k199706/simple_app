@@ -62,22 +62,12 @@ class UsersController < ApplicationController
   end
   #プロフィール編集画面
   def edit
-    if params[:name]
       @user = User.find_by(id: params[:id])
-    else
-      @user=User.find(current_user.id)
-    end
-    p "==================="
-    p params
-    p "==================="
-
   end
   #プロフィール更新処理
   def update
     @user = User.find_by(id: params[:id])
-    p "==================="
-    p @user.errors.full_messages
-    p "==================="
+    
     if @user.update(user_params)
       p "==================="
       p "成功"

@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     p @comment.errors.full_messages
     p "==================="
     end
-    def destroy
+    def destory
         @comment=Comment.find_by(id: params[:id])
         @comment.resign= true
         @comment.save

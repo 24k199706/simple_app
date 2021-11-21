@@ -16,20 +16,23 @@
                                        <%= gravatar_for current_user %>
                                     <% end %>
                                     <%= link_to post.user.name ,user_path(post.user.name) %>
+                                </td>
+                                <td>
                                     <h3><%= link_to post.title , posts_show_path(post) %></h3>
                                     <%if post.image.url %>
-                                        <%= image_tag post.image.url , :size =>"320x240" %>
+                                        <%= image_tag post.image.url , :size =>"320x240" %><%= render_with_tags (post.content) %>
                                     <% else %>
                                         <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
                                     <% end %>
                                     <div class="card-body">
-                                        <p class="card-text"><%= post.content %></p>
+                                        
                                     <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                     <small class="text-muted"><%=post.created_at %></small>
                                     </div>
                                     </div>
                                 </td>
+                            </div>
                         <% end %>
                     </tbody>
             </table>

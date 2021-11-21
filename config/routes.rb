@@ -28,18 +28,22 @@ Rails.application.routes.draw do
   get "/posts/:id/edit", to:"posts#edit",as:"posts_edit"#投稿編集画面
   patch "/posts/:id",to:"posts#update", as:"posts_update"#投稿のアップデート
   post "/posts",to:"posts#creat",as: "posts_creat"
-  delete "/posts/:id", to:"posts#destroy" , as: "posts_delete"
+  delete "/posts/:id", to:"posts#destory" , as: "posts_delete"
 #コメント機能
   post "/comments/:id", to:"comments#creat",as:"comment_creat"#コメント
-  delete "/comments/:id", to:"comments#destroy" , as: "comment_delete"#コメント削除
+  delete "/comments/:id", to:"comments#destory" , as: "comment_delete"#コメント削除
+
+#タグ機能
+get '/post/hashtag/:name', to: "posts#hashtag"
+
 #いいね機能
   post "/comment_likes/:comment_id/:user_id", to:"likes#comment_creat" ,as:"like_comment_creat"
   post "/post_likes/:post_id/:user_id", to:"likes#post_creat" ,as:"like_post_creat"
-  delete "/likes/:post_id/:user_id",to:"likes#destroy",as:"like_destory"
-  delete "/likes/:user_id/:comment_id",to:"likes#comment_like_destroy" ,as:"comment_like_destroy"
+  delete "/likes/:post_id/:user_id",to:"likes#destory",as:"like_destory"
+  delete "/likes/:user_id/:comment_id",to:"likes#comment_like_destory" ,as:"comment_like_destory"
 
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :posts,          only: [:create, :destroy]
-  resources :relationships,       only: [:create, :destroy]
+  resources :posts,          only: [:create, :destory]
+  resources :relationships,       only: [:create, :destory]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

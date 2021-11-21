@@ -1,7 +1,7 @@
 <title>投稿編集画面</title>
     <main class="container">
         <div class="starter-template text-center py-5 px-3">
-            <%= form_for(@post) do |f| %>
+            <%= form_for(@post , url: posts_update_path(@post)) do |f| %>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">投稿画像</label>
                 <%= f.file_field :image %><br>

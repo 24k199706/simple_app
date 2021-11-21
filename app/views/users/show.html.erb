@@ -1,17 +1,16 @@
 <div class="container marketing">
   <div class="row featurette">
     <div class="col-md-7 order-md-2">
-      <% if @user.image.url ==nil %>
-        <%= gravatar_for current_user %>
+      <% if @user.image.url.blank? %>
+        <%= gravatar_for current_user %><%= @user.name %>
       <% else %>
-        <%= image_tag @user.image.url :size =>'50x50' %> 
+        <%= image_tag @user.image.url :size =>'50x50' %><%= @user.name %>
       <% end %>
       <div class="col-md-7 order-md-2"> 
         <div class= 'featurette-heading'>     
-          <%= @user.name %>
         </div>
           <% if current_user.id ==@user.id %>
-            <%= link_to "編集", edit_path(current_user.name) %><br>
+            <%= link_to "編集", edit_path(current_user.id) %><br>
           <% end %>
           <div class="lead">
             <%= @user.content %>
@@ -26,7 +25,7 @@
             <tr>
             <td><h6><%= link_to post.title , posts_edit_path(post) %><h6>
             <%if post.image.url %>
-              <%= image_tag post.image.url , :size =>'200x200' %>
+              <%= image_tag post.image.url , :size =>"320x240" %>
             <% end %>
             <%= post.content %></td>
             </tr>
