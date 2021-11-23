@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
     before_action :logged_in_user, only: [:create ]
-    before_action :correct_user,   only: :destory
+    before_action :correct_user,   only: :destroy
     def new
         @post=Post.new
     end
@@ -48,7 +48,7 @@ class PostsController < ApplicationController
             render "edit"
         end
     end
-    def destory
+    def destroy
         @post.delete_flg = true
         @post.save
         flash.now[:success] = "投稿を削除しました。"

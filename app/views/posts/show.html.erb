@@ -3,7 +3,6 @@
         <h3><%= @post.title %></h3>
         <td>
         <% if current_user.id == @post.user_id %>
-            <%= link_to "編集" , posts_edit_path(@post) %>
             <%= link_to "delete", posts_delete_path(@post), method: :delete,
                                        data: { confirm: "本当に投稿を削除しますか？" } %>
         <% end %><br>
@@ -16,29 +15,24 @@
             <%= @post.content %>
         <% end %>
         </div>
+            <%= render 'post', post: @post %>
         
-        <% if current_user.liked_by?(@post,nil) %>
-            <%= link_to 'いいねを外す', like_destory_path(@post,current_user.id), method: :delete, remote: true %> <%=@post.likes.count %><br>
-        <% else %>
-            <%= link_to 'いいね', like_post_creat_path(@post,current_user.id), method: :post, remote: true %> <%=@post.likes.count %><br>
-        <% end %>
         <small class="text-muted"><%=@post.created_at %></small>
     </div>
-
     <div>
         <table class="table" >
                 <tr>
-                    <% @post.comments.each do |comment| %>
+                   <% @post.comments.each do |comment| %>
                     <% if comment.user_id == current_user.id %>
-                        <td><%= link_to(comment.user.name,mypage_path) %>|<%= comment.comment_content %></td>
                             <% if comment.resign !=true %>
+                                    <td><%= link_to(comment.user.name,mypage_path) %>|<%= comment.comment_content %></td>
                                     <td><%= link_to "delete", comment_delete_path(comment.id) , method: :delete,
                                        data: { confirm: "返信を削除しますか？" } %>
-                                    <!---<% if current_user.liked_by?(comment,nil) %>
-                                        <%= link_to 'いいねを外す', comment_like_destory_path(comment,current_user.id), method: :DELETE %><br>
+                                    <% if current_user.liked_by?(comment,nil) %>
+                                        <%= link_to 'いいねを外す', comment_like_destroy_path(comment,current_user.id), method: :DELETE %><br>
                                     <% else %>
-                                    <%= link_to 'いいね', like_comment_creat_path(comment,current_user.id), method: :POST %><br>
-                                    <% end %>-->
+                                        <%= link_to 'いいね', like_comment_creat_path(comment,current_user.id), method: :POST %><br>
+                                    <% end %>
                             <% end %>
                             </td>
                     <% end %>

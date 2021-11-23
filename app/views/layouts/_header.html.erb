@@ -14,7 +14,7 @@
     </div>
           <nav class="my-2 my-md-0 me-md-3">
             <%= link_to "Profile", mypage_path, class: "p-2 text-dark" %>
-            <%= link_to "Log out", destory_path, method: :delete, class: "p-2 text-dark" %>
+            <%= link_to "Log out", destroy_path, method: :delete, class: "p-2 text-dark" %>
             <%= link_to "退会ボタン", resign_path(current_user), method: :delete, class: "p-2 text-dark" %>
           </nav>  
         <% else %>

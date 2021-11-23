@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
       redirect_to renew_path
     end
   end
-  def destory
+  def destroy
     #トークンでログインしているときにログアウトできるようにする
     log_out if logged_in?
     redirect_to root_path

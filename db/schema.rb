@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_11_14_073644) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "password_ansnwers", force: :cascade do |t|
+  create_table "password_answers", force: :cascade do |t|
     t.string "answer"
     t.integer "user_id"
     t.integer "password_question_id"

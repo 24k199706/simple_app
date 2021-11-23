@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update ,:following, :followers]
-  before_action :correct_user,   only: [:edit, :update]
+  
   #プロフィール画面のコントローラ側
   def show
     if params[:name]
@@ -23,6 +23,8 @@ class UsersController < ApplicationController
     p params
     p "==================="
     if @user.save
+      password_user=PasswordAnswer.new(answer: params[:user][:reset_answer], password_question_id: params[:user][:reset_question],user_id: @user.id)
+      password_user.save
       log_in @user
       remember @user
       flash[:success] = "Welcome to the Simple_App!"
@@ -91,9 +93,6 @@ class UsersController < ApplicationController
         redirect_to login_url
       end
     end
-    def correct_user
-      @user = User.find_by(name: params[:name])
-      redirect_to(root_url) unless @user == current_user
-    end
+    
 
 end
