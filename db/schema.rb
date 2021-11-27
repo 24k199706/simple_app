@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_14_073644) do
+ActiveRecord::Schema.define(version: 2021_11_27_004822) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment_content"
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(version: 2021_11_14_073644) do
     t.integer "user_id"
     t.integer "tag_id"
     t.boolean "delete_flg"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posttags", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

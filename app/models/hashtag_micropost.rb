@@ -1,6 +1,0 @@
-class MicropostHashtag < ApplicationRecord
-    belongs_to :post
-    has_many :tags
-    validates  :post_id, presence: true
-    validates  :tag_id,   presence: true
-end

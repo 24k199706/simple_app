@@ -1,2 +1,7 @@
 <h1>PasswordResets#edit</h1>
 <p>Find me in app/views/password_resets/edit.html.erb</p>
+<%= form_for @user, url: pass_update_path do |f| %>
+  <%= f.password_field :password %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.submit %>
+<% end %>

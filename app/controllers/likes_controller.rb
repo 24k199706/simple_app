@@ -8,7 +8,6 @@ class LikesController < ApplicationController
     def comment_like_creat
         @like=Like.new(user_id: params[:user_id] , comment_id: params[:comment_id])
         like_comment_creat(@like)
-        
     end
     def destroy
         @like = Like.find_by(post_id: params[:post_id], user_id: params[:user_id])
@@ -33,7 +32,7 @@ class LikesController < ApplicationController
     end
     def like_comment_creat(like)
         if like.save
-            redirect_to posts_show_path(like.comment_id)
+            redirect_to posts_show_path(params[:comment_id])
         else
             render "posts/show"
             p "==================="

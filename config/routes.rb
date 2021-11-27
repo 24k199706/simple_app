@@ -4,12 +4,15 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#creat",as:"login_creat"
   delete "/logout", to: "sessions#destroy", as: "destroy"#ログアウト機能
  #ホーム画面 ログイン後の投稿一覧
-  root to:"simples#home"
+ root to:"simples#home"
 #パスワード再設定機能
   get "/password_resets/new",to: "password_resets#new" ,as:"pass_new"#パスワード再設定画面
   post "/password_resets",to: "password_resets#user_find",as:"user_find"
-  get "/password_resets/edit/:user_id",to:"password_resets#edit", as:"pass_edit"
-  patch " /password_resets/:user_id",to: "password_resets#update", as:"pass_update"
+  get '/password_resets/edit/:user_id',to: "password_resets#edit", as:"pass_edit"
+  patch '/password_resets/:user_id',to: "password_resets#update", as:"pass_update"
+
+#お問い合わせページ
+  get "/faq", to: "faqs#question", as:"faq"
 #user機能
   get '/users/new', to: "users#new", as:"new" #新規登録画面
   get "/renew", to:"users#renew",as:"renew"#再登録

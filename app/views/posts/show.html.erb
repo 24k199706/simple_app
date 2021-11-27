@@ -28,10 +28,14 @@
                                     <td><%= link_to(comment.user.name,mypage_path) %>|<%= comment.comment_content %></td>
                                     <td><%= link_to "delete", comment_delete_path(comment.id) , method: :delete,
                                        data: { confirm: "返信を削除しますか？" } %>
-                                    <% if current_user.liked_by?(comment,nil) %>
-                                        <%= link_to 'いいねを外す', comment_like_destroy_path(comment,current_user.id), method: :DELETE %><br>
+                                    <% if current_user.liked_by?(nil,comment.id) %>
+                                        <i class="fa fa-heart unlike-btn">
+                                        <%= link_to 'いいねを外す', comment_like_destroy_path(comment,current_user.id), method: :DELETE  %><%=comment.likes.count %><br>
+                                        </i>
                                     <% else %>
-                                        <%= link_to 'いいね', like_comment_creat_path(comment,current_user.id), method: :POST %><br>
+                                        <i class="fa fa-heart like-btn">
+                                        <%= link_to 'いいね', like_comment_creat_path(comment,current_user.id), method: :POST  %><%=comment.likes.count %><br>
+                                        </i>
                                     <% end %>
                             <% end %>
                             </td>
