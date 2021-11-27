@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   delete "/comments/:id", to:"comments#destroy" , as: "comment_delete"#コメント削除
 
 #タグ機能
-  get '/post/hashtag/:name', to: "posts#hashtag"
+  get '/post/hashtag/:name', to: "posts#hashtag" ,as:"hashtag"
 
 #いいね機能
   post "/post_likes/:post_id/:user_id", to:"likes#post_creat" ,as:"like_post_creat"

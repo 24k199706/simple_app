@@ -14,6 +14,10 @@
                 <label for="exampleFormControlInput1" class="form-label">本文</label>
                 <textarea  oninput="check_input()" placeholder="ここに何か入力してね" class="form-control exampleFormControlTextarea1" name="post[content]"  rows="20"></textarea>
             </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">ハッシュタグ入力欄</label>
+                <textarea  placeholder="ハッシュタグを入れてね" class="form-control" id="title" name="post.tag[name]"></textarea><br>            
+            </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <%= f.submit "新規投稿", class: "btn btn-primary" %>
             </div>

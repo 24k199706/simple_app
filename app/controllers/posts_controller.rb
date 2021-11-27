@@ -6,10 +6,12 @@ class PostsController < ApplicationController
     end
     def creat
         @post=current_user.posts.build(posts_params)
+        @tag=Tag.create(name: params[:name])
         p "==================="
-        p @post.errors.full_messages
+        p @tag.errors.full_messages
         p "==================="
         if @post.save
+            Posttag.create(post_id: @post.id,tag_id: @tag.id)
             redirect_to root_path
         else
             render "posts_new"    
@@ -18,7 +20,7 @@ class PostsController < ApplicationController
     end
     def hashtag
         @tag = Tag.find_by(name: params[:name])
-        @post = @tag.posts
+        @post = @tag.posttags
     end
 
     def show
