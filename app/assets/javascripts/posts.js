@@ -3,7 +3,7 @@ const check_input = () => {
     let content = $("#content").val();
     if (title || content) {
       document.getElementById("error_title").innerHTML =
-        "タイトル　ちゃんと入力しろよ！";
+        "タイトルちゃんと入力しろよ！";
     }
     if (title && content) {
       document.getElementById("btn").disabled = false;

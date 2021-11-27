@@ -23,7 +23,7 @@
         <tbody>
           <% @user.posts.each do |post| %>
             <tr>
-            <td><h6><%= link_to post.title , posts_edit_path(post) %><h6>
+            <td><h6><%=post.title %><h6>
             <%if post.image.url %>
               <%= image_tag post.image.url , :size =>"320x240" %>
             <% end %>

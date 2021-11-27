@@ -6,8 +6,6 @@ class PostsController < ApplicationController
     end
     def creat
         @post=current_user.posts.build(posts_params)
-        #@tag = Tag.find_by(name: params[:name])
-        #@tag.posts.page(params[:page])
         p "==================="
         p @post.errors.full_messages
         p "==================="
@@ -18,8 +16,10 @@ class PostsController < ApplicationController
         
         end
     end
-    
-
+    def hashtag
+        @tag = Tag.find_by(name: params[:name])
+        @post = @tag.posts
+    end
 
     def show
         @post=Post.find(params[:id])

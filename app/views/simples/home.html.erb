@@ -11,7 +11,7 @@
                             <div class="card shadow-sm">
                                 <td>
                                     <% if post.user.image.url %>
-                                        <%= image_tag post.user.image.url , :size =>'32x32' %>    
+                                        <%= image_tag post.user.image.url , :size =>'80x80' %>    
                                     <% else %>
                                        <%= gravatar_for current_user %>
                                     <% end %>
@@ -22,7 +22,7 @@
                                     <%if post.image.url %>
                                         <%= image_tag post.image.url , :size =>"320x240" %><%= render_with_tags (post.content) %>
                                     <% else %>
-                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                                        <svg class="bd-placeholder-img card-img-top" width="50%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg><%= render_with_tags (post.content) %>
                                     <% end %>
                                     <div class="card-body">
                                         
