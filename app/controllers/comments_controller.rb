@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
     #返信処理
-    def creat
+    def create
         @comment=Comment.new(comment_params)
         if @comment.save
             redirect_to posts_show_path

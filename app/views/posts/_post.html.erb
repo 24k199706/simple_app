@@ -4,6 +4,6 @@
             </i>
 <% else %>
             <i class="fa fa-heart like-btn">
-            <%= link_to 'いいね', like_post_creat_path(@post,current_user.id), method: :post %> <%=@post.likes.count %><br>
+            <%= link_to 'いいね', like_post_create_path(@post,current_user.id), method: :post %> <%=@post.likes.count %><br>
             </i>
 <% end %>

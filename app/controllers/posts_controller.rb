@@ -3,12 +3,13 @@ class PostsController < ApplicationController
     before_action :correct_user,   only: :destroy
     def new
         @post=Post.new
+        
     end
-    def creat
+    def create
         @post=current_user.posts.build(posts_params)
-        @tag=Tag.create(name: params[:name])
+        @tag=Tag.uniq!.create(name: params[:tag][:name])
         p "==================="
-        p @tag.errors.full_messages
+        p @post.tags
         p "==================="
         if @post.save
             Posttag.create(post_id: @post.id,tag_id: @tag.id)
@@ -19,7 +20,10 @@ class PostsController < ApplicationController
         end
     end
     def hashtag
-        @tag = Tag.find_by(name: params[:name])
+        @tag = Tag.find_by(name: params[:tag][:name])
+        p "============="
+        p @tag
+        p "============="
         @post = @tag.posttags
     end
 

@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def new
 
   end
-  def creat
+  def create
     user = User.find_by(email: params[:session][:email].downcase)
     p "==================="
     p params

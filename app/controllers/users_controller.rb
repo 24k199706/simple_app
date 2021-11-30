@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user=User.new
   end
   #新規登録の処理
-  def creat
+  def create
     @user=User.new(user_params)
     p "==================="
     p params

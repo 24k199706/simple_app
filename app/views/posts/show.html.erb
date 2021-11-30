@@ -14,7 +14,7 @@
             aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="50%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
             
         <% end %>
-        <%= render_with_tags (@post.content) %>
+        <%= @post.content%>
         </div>
             <%= render 'post', post: @post %>
         
@@ -35,7 +35,7 @@
                                         </i>
                                     <% else %>
                                         <i class="fa fa-heart like-btn">
-                                        <%= link_to 'いいね', like_comment_creat_path(comment,current_user.id), method: :POST  %><%=comment.likes.count %><br>
+                                        <%= link_to 'いいね', like_comment_create_path(comment,current_user.id), method: :POST  %><%=comment.likes.count %><br>
                                         </i>
                                     <% end %>
                             <% end %>
@@ -45,7 +45,7 @@
                 </tr>    
         </table>
     </div>
-    <%= form_for @comment , url: comment_creat_path do |f|  %>
+    <%= form_for @comment , url: comment_create_path do |f|  %>
         <textarea aria-label="コメントを追加…" placeholder="コメントを追加…" class="Ypffh"name="comment[comment_content]" autocomplete="off" autocorrect="off" style="height: 30px !important;"></textarea>
         <input type="hidden" name="comment[post_id]" value="<%=@post.id %>">
         <input type="hidden" name="comment[user_id]" value="<%=current_user.id %>">

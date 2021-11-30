@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
  gem 'mini_magick', '~> 4.8'
  gem 'active_hash'
  gem 'font-awesome-sass'
+ gem 'rails-i18n'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
