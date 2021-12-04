@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update ,:following, :followers]
+  before_action :logged_in?, only: [:edit, :update ,:following, :followers]
   
   #プロフィール画面のコントローラ側
   def show

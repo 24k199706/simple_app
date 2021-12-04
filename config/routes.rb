@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   #ログイン機能,ログアウト機能
   get '/login', to: "sessions#new" ,as:"login"#ログイン画面
-  post "/login", to: "sessions#create",as:"login_creat"
+  post "/login", to: "sessions#create",as:"login_create"
   delete "/logout", to: "sessions#destroy", as: "destroy"#ログアウト機能
  #ホーム画面 ログイン後の投稿一覧
  root to:"simples#home"

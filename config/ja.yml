@@ -1,8 +1,0 @@
-ja:
-  activerecord:
-    models:
-      event: イベント
-    attributes:
-      event:
-        name: ユーザ名
-        password: パスワード

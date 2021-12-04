@@ -26,6 +26,7 @@
             <td><h6><%=post.title %><h6>
             <%if post.image.url %>
               <%= image_tag post.image.url , :size =>"320x240" %>
+              <%= post.content %>
             <% end %>
             <%= post.content %></td>
             </tr>

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :logged_in_user, only: :create 
+    before_action :logged_in?, only: [:create] 
     before_action :correct_user,   only: :destroy
     def new
         @post=Post.new
@@ -7,18 +7,17 @@ class PostsController < ApplicationController
     end
     def create
         @post=current_user.posts.build(posts_params)
-        @tag=Tag.find_by(id: params[:tag][:id])
-        if @tag.name.blank?
-            @tag=Tag.create(name: params[:tag][:name])
-        
+        @tag=Tag.find_by(name: params[:tag][:name])
             if @post.save
-                Posttag.create(post_id: @post.id,tag_id: @tag.id)
-                redirect_to root_path
+                if @tag==nil
+                    @tag=Tag.create(name: params[:tag][:name])
+                    Posttag.create(post_id: @post.id,tag_id: @tag.id)
+                    redirect_to root_path
+                end
             else
                 render "posts_new"    
         
             end
-        end
     end
     def hashtag
         @tag = Tag.find_by(name: params[:tag][:name])
