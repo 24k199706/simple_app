@@ -15,8 +15,8 @@
 //= require turbolinks
 //= require_tree .
 const check_input = () => {
-    let title = $("#title").val();
-    let content = $("#content").val();
+    let title = $("#title").text();
+    let content = $("#content").text();
     if (title || content) {
       document.getElementById("error_title").innerHTML =
         "タイトルちゃんと入力しろよ！";

@@ -8,23 +8,23 @@ class PostsController < ApplicationController
     def create
         @post=current_user.posts.build(posts_params)
         @tag=Tag.find_by(name: params[:tag][:name])
-            if @post.save
-                if @tag==nil
-                    @tag=Tag.create(name: params[:tag][:name])
-                    Posttag.create(post_id: @post.id,tag_id: @tag.id)
-                    redirect_to root_path
-                end
-            else
-                render "posts_new"    
+        if @tag==nil
+            @tag=Tag.create(name: params[:tag][:name])
+        end
+        if @post.save
+            Posttag.create(post_id: @post.id,tag_id: @tag.id)
+            redirect_to root_path
+        else
+            render "posts_new"    
         
-            end
+        end
     end
     def hashtag
-        @tag = Tag.find_by(name: params[:tag][:name])
+        @tag = Tag.find_by(name: params[:name])
         p "============="
         p @tag
         p "============="
-        @post = @tag.posttags
+        @posttags = @tag.posttags
     end
 
     def show

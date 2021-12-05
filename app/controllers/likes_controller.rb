@@ -22,6 +22,7 @@ class LikesController < ApplicationController
     
     def like_create(like)
         if like.save
+            @like.post.create_notification_like!(current_user)
             redirect_to posts_show_path(like.post_id)
         else
             render "posts/show"
