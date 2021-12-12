@@ -7,16 +7,68 @@ class PostsController < ApplicationController
     end
     def create
         @post=current_user.posts.build(posts_params)
-        @tag=Tag.find_by(name: params[:tag][:name])
-        if @tag ==nil
-                Tag.create(name: params[:tag][:name])
-        end
-        if @post.save
-            Posttag.create(post_id: @post.id,tag_id: @tag.id)
-            redirect_to root_path
+        #split関数で分ける
+        result=[]
+        if params[:tag][:name].include?("　")
+            result=params[:tag][:name].split("　")   
+        elsif params[:tag][:name].include?(" ")
+            result=params[:tag][:name].split(" ") 
         else
-            render "posts_new"    
+            result=params[:tag][:name]
+        end
+        p "====================="
+        p result
+        p "====================="
+        @tag=[]
+        if result.instance_of?(Array)
+            result.each do|f|
+                if Tag.find_by(name: f)
+                    @tag.push(Tag.find_by(name: f)) 
+               else
+                @tag.push(f)
+               end
+            end
+        else
+            @tag=Tag.find_by(name: params[:tag][:name])  
+        end
+        p "====================="
+        p @tag
+        p "====================="
+        @tag_result=[]
+        if @tag.instance_of?(Array)
+            @tag.each do|t|
+                if @tag.instance_of?(String)
+                    @tag_result.push(Tag.create(name: t))
+                    p "string"
+                    p t
+                    p "string"
+                else
+                    @tag_result.push(t)
+                    p "hash"
+                    p t
+                    p "hash"
+                end
+            end
+        else
+            if @tag == nil
+                @tag_result = Tag.create(name: params[:tag][:name])
+            else
+                @tag_result = @tag
+            end
+        end
         
+        if @post.save
+            if @tag_result.instance_of?(Array)
+                @tag_result.each do |tag|
+                  Posttag.create(post_id: @post.id,tag_id: tag.id)
+                end
+            else
+                Posttag.create(post_id: @post.id,tag_id: @tag_result.id)
+            end
+              redirect_to root_path
+        else
+                render "posts_new"    
+            
         end
     end
     def hashtag

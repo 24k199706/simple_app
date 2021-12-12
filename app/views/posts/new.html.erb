@@ -19,21 +19,8 @@
                 <textarea id="text1" placeholder="ハッシュタグを入れてね" class="form-control" id="title" name="tag[name]"></textarea><br>            
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <input type="submit" id="btn" name="commit" value="新規投稿" class="btn btn-primary" data-disable-with="新規投稿"  >
+                <input type="submit"  name="commit" value="新規投稿" class="btn btn-primary" data-disable-with="新規投稿" onclick=jscheack() >
             </div>
         <% end %>
     </div>
 </main>
-<script>
-const titletext=document.getelementbyid("text");
-const titletext2=document.getelementbyid("text1");
-const bottn=document.getelementbyid("btn");
-bttn.addEventListener('click', () => {
-if titletext=""{
-    alert("タイトルを入力してください");
-}
-if titletext2=""{
-    alert("投稿内容を入力してください");
-}
-})
-</script>
