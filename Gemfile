@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
  gem 'active_hash'
  gem 'font-awesome-sass'
  gem 'rails-i18n'
+ gem 'jquery-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

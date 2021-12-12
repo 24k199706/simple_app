@@ -24,3 +24,8 @@
     background-image: url("sky_back.jpg");
     background-size: cover;
   }
+  footer {
+   position: fixed;
+   bottom: 0;
+
+}

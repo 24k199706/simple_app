@@ -7,13 +7,8 @@ class PostsController < ApplicationController
     end
     def create
         @post=current_user.posts.build(posts_params)
-        if params [:tag][:name].slice(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
-            @tag=Tag.find_by(name: params[:tag][:name].slice(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/))
-        end
-        p "==================="
-        p @tag
-        p "==================="
-        if @tag==nil
+        @tag=Tag.find_by(name: params[:tag][:name])
+        if @tag ==nil
                 Tag.create(name: params[:tag][:name])
         end
         if @post.save

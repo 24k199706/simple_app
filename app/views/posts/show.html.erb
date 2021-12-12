@@ -16,8 +16,9 @@
         <% end %>
         <%= @post.content%>
         </div>
+            <tr id="post_<%= @post.id %>">
             <%= render 'post', post: @post %>
-        
+            </tr>
         <small class="text-muted"><%=@post.created_at.in_time_zone('Tokyo').strftime("%Y年%-m月%-d日 %-H時%-M分") %></small>
     </div>
     <div>

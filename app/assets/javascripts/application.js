@@ -10,20 +10,18 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= repuire jquery
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-const check_input = () => {
-    let title = $("#title").text();
-    let content = $("#content").text();
-    if (title || content) {
-      document.getElementById("error_title").innerHTML =
-        "タイトルちゃんと入力しろよ！";
-    }
-    if (title && content) {
-      document.getElementById("btn").disabled = false;
-    } else {
-      document.getElementById("btn").disabled = true;
-    }
-  };
+
+function check() {
+  if (post[title].value=""){
+      alert("タイトルを入力してください")
+      return false;
+  }else{
+      return true;
+  }
+      
+}
