@@ -36,8 +36,10 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
   
-  def liked_by?(post_id=nil, comment_id=nil)
-    result=Like.where(post_id: post_id).or(Like.where(comment_id: comment_id))
-    result.where(user_id: self.id).exists?
+  def post_liked_by?(post_id=nil)
+    Like.where(post_id: post_id).exists?
+  end
+  def comment_like_by(comment_id=nil)
+    Like.where(comment_id: comment_id).exists?
   end
 end

@@ -37,7 +37,7 @@ class PostsController < ApplicationController
         @tag_result=[]
         if @tag.instance_of?(Array)
             @tag.each do|t|
-                if @tag.instance_of?(String)
+                if t.instance_of?(String)
                     @tag_result.push(Tag.create(name: t))
                     p "string"
                     p t

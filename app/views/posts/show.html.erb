@@ -31,7 +31,7 @@
                                     <td><%= link_to "delete", comment_delete_path(comment.id) , method: :delete,
                                        data: { confirm: "返信を削除しますか？" } %>
                                     <td><%= comment.created_at.in_time_zone('Tokyo').strftime("%Y年%-m月%-d日 %-H時%-M分") %>
-                                    <% if current_user.liked_by?(nil,comment.id) %>
+                                    <% if current_user.comment_like_by(comment.id) %>
                                         <i class="fa fa-heart unlike-btn">
                                         <%= link_to 'いいねを外す', comment_like_destroy_path(comment,current_user.id), method: :DELETE  %><%=comment.likes.count %><br>
                                         </i>
