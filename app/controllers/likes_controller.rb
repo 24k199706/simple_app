@@ -21,13 +21,12 @@ class LikesController < ApplicationController
     end
     def like_create(like)
         if like.save
-            @item=Post.find_by(params[:post_id])
-            @item.create_notification_by(current_user)
+            @post=Post.find_by(params[:post_id])
+            @post.create_notification_by(current_user)
             respond_to do |format|
                 format.html {redirect_to request.referrer}
                 format.js
             end
-            redirect_to posts_show_path(params[:post_id])
         else
             render "posts/show"
             p "==================="

@@ -67,7 +67,7 @@ class PostsController < ApplicationController
             end
               redirect_to root_path
         else
-                render "posts_new"    
+            render "posts_new"    
             
         end
     end

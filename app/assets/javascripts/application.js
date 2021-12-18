@@ -14,14 +14,4 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
-
-function check() {
-  if (post[title].value=""){
-      alert("タイトルを入力してください")
-      return false;
-  }else{
-      return true;
-  }
-      
-}
+//= require_tree

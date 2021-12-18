@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   get '/password_resets/edit/:user_id',to: "password_resets#edit", as:"pass_edit"
   patch '/password_resets/:user_id',to: "password_resets#update", as:"pass_update"
 
-#お問い合わせページ
-  get "/faq", to: "faqs#question", as:"faq"
 #user機能
   get '/users/new', to: "users#new", as:"new" #新規登録画面
   get "/renew", to:"users#renew",as:"renew"#再登録
