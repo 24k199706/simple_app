@@ -22,10 +22,9 @@
  }
  body {
     background-image: url("sky_back.jpg");
-    background-size: cover;
+    background-size: auto;
   }
   footer {
    position: fixed;
-   bottom: 0;
 
 }

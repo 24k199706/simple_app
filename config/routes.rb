@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   #ログイン機能,ログアウト機能
-  get '/login', to: "sessions#new" ,as:"login"#ログイン画面
+  get "/login", to: "sessions#new" ,as:"login"#ログイン画面
   post "/login", to: "sessions#create",as:"login_create"
   delete "/logout", to: "sessions#destroy", as: "destroy"#ログアウト機能
  #ホーム画面 ログイン後の投稿一覧
@@ -8,19 +8,21 @@ Rails.application.routes.draw do
 #パスワード再設定機能
   get "/password_resets/new",to: "password_resets#new" ,as:"pass_new"#パスワード再設定画面
   post "/password_resets",to: "password_resets#user_find",as:"user_find"
-  get '/password_resets/edit/:user_id',to: "password_resets#edit", as:"pass_edit"
-  patch '/password_resets/:user_id',to: "password_resets#update", as:"pass_update"
-
+  get "/password_resets/edit/:user_id",to: "password_resets#edit", as:"pass_edit"
+  patch "/password_resets/:user_id",to: "password_resets#update", as:"pass_update"
+#通知機能
+  get  "/notifications",to:"notifications#index",as:"infomation"
+  delete "/notifications",to:"notifications#destroy_all",as:"infomation_destroy"
 #user機能
-  get '/users/new', to: "users#new", as:"new" #新規登録画面
+  get "/users/new", to: "users#new", as:"new" #新規登録画面
   get "/renew", to:"users#renew",as:"renew"#再登録
   post "/reupdate",to:"users#reupdate",as:"reupdate"
   post "/users", to: "users#create",as:"create"
-  get '/users/mypage', to: "users#show",as:"mypage"#プロフィール詳細画面
-  get '/users/:name', to: "users#show",as:"user"
-  get '/users/:id/edit', to: "users#edit",as:"edit"#プロフィール編集画面
-  patch '/users/:id/edit', to: "users#update" ,as:"update"#プロフィール更新画面
-  delete '/users/:id', to: "users#destroy",as: "delete"#ログアウト
+  get "/users/mypage", to: "users#show",as:"mypage"#プロフィール詳細画面
+  get "/users/:name", to: "users#show",as:"user"
+  get "/users/:id/edit", to: "users#edit",as:"edit"#プロフィール編集画面
+  patch "/users/:id/edit", to: "users#update" ,as:"update"#プロフィール更新画面
+  delete "/users/:id", to: "users#destroy",as: "delete"#ログアウト
   delete "/resign/:id", to: "users#resign",as:"resign"#ユーザの退会のための論理削除
 
 #投稿機能
@@ -34,7 +36,7 @@ Rails.application.routes.draw do
   delete "/comments/:id", to:"comments#destroy" , as: "comment_delete"#コメント削除
 
 #タグ機能
-  get '/post/hashtag/:name', to: "posts#hashtag" ,as:"hashtag"
+  get "/post/hashtag/:name", to: "posts#hashtag" ,as:"hashtag"
 
 #いいね機能
   post "/post_likes/:post_id/:user_id", to:"likes#post_create" ,as:"like_post_create"
@@ -44,6 +46,5 @@ Rails.application.routes.draw do
 
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,          only: [:create, :destroy]
-  resources :notifications, only: :index ,as: "infomation"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

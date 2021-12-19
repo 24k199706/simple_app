@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 2021_12_05_082637) do
     t.integer "visitor_id"
     t.integer "visited_id"
     t.integer "post_id"
-    t.integer "comment_id"
     t.string "action"
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false

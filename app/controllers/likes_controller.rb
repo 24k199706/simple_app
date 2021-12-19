@@ -22,7 +22,7 @@ class LikesController < ApplicationController
     def like_create(like)
         if like.save
             @post=Post.find_by(params[:post_id])
-            @post.create_notification_by(current_user)
+            @post.create_notification_by(current_user,"like")
             respond_to do |format|
                 format.html {redirect_to request.referrer}
                 format.js

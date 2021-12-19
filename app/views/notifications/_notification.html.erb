@@ -1,10 +1,8 @@
-
-<div class="user-view clearfix ">
-  <%= link_to mypage_path(notification.visitor) do %>
+<%= @notifications.each do|infomation| %>
+  <% if infomation.action=="like"%>
+  <table>
+      <%= link_to notification_form(infomation), posts_show_path(infomation.post_id) %><br/>
+    <% else %>
+      <%= link_to notification_form(infomation), posts_show_path(infomation.post_id) %>
   <% end %>
-  <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
-  <br>
-  <% if !@comment.nil? %>
-    <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @comment %></p>
-  <% end %>
-</div>
+<% end %>  

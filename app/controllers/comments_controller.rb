@@ -2,10 +2,13 @@ class CommentsController < ApplicationController
     #返信処理
     def create
         @comment=Comment.new(comment_params)
-        @post=@comment.posts
         if @comment.save
-            @post.create_notification_comment!(current_user, @comment.id)
-            redirect_to posts_show_path
+            @post=Post.find_by(params[:post_id])
+            @post.create_notification_comment_by(current_user,"comment")
+            respond_to do |format|
+                format.html {redirect_to request.referrer}
+                format.js
+            end
         else
             render "posts/show"    
         

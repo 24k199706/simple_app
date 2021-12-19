@@ -37,9 +37,9 @@ class User < ApplicationRecord
   end
   
   def post_liked_by?(post_id=nil)
-    Like.where(post_id: post_id).exists?
+    Like.where(post_id: post_id, user_id: self.id).exists?
   end
   def comment_like_by(comment_id=nil)
-    Like.where(comment_id: comment_id).exists?
+    Like.where(comment_id: comment_id, user_id: self.id).exists?
   end
 end
