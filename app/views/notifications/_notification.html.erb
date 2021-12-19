@@ -3,12 +3,14 @@
     <tr>
       <td>
         <%= link_to notification_form(infomation), posts_show_path(infomation.post_id) %><br>
+        <%= infomation.created_at.in_time_zone('Tokyo').strftime("%Y年%-m月%-d日 %-H時%-M分") %>
       </td>
     </tr>
   <% else %>
     <tr>
       <td>
         <%= link_to notification_form(infomation), posts_show_path(infomation.post_id) %><br>
+        <%= infomation.created_at.in_time_zone('Tokyo').strftime("%Y年%-m月%-d日 %-H時%-M分") %>
       </td>
     </tr>
   <% end %>

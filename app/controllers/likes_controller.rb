@@ -7,7 +7,7 @@ class LikesController < ApplicationController
     end
     def comment_like_create
         @like=Like.new(user_id: params[:user_id] , comment_id: params[:comment_id])
-        @like.save
+        like_comment_create(@like)
     end
     def destroy
         @like = Like.find_by(post_id: params[:post_id], user_id: params[:user_id])
@@ -29,9 +29,6 @@ class LikesController < ApplicationController
             end
         else
             render "posts/show"
-            p "==================="
-            p @like.errors.full_messages
-            p "==================="
         end
     end
     def like_comment_create(like)
@@ -39,9 +36,6 @@ class LikesController < ApplicationController
             redirect_to posts_show_path(params[:comment_id])
         else
             render "posts/show"
-            p "==================="
-            p @like.errors.full_messages
-            p "==================="
         end
     end
 end

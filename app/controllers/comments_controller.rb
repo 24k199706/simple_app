@@ -13,9 +13,6 @@ class CommentsController < ApplicationController
             render "posts/show"    
         
         end
-    p "==================="
-    p @comment.errors.full_messages
-    p "==================="
     end
     def destroy
         @comment=Comment.find_by(id: params[:id])

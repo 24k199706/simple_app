@@ -38,8 +38,8 @@ class UsersController < ApplicationController
   def renew
 
   end
-
-  def reupdate#再登録処理
+  #再登録処理
+  def reupdate
     @user = User.find_by(email: params[:renew][:email])
     if @user
       @user.resign = false
@@ -48,7 +48,6 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
-
 
   #論理削除の処理
   def resign

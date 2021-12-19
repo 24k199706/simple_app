@@ -46,11 +46,11 @@
                             <%= comment.comment_content %><br>
                             <% if current_user.comment_like_by?(comment.id) %>
                                 <i class="fa fa-heart unlike-btn">
-                                <%= link_to 'いいねを外す', comment_like_destroy_path(comment,current_user.id), method: :DELETE   %><%=comment.likes.count %><br>
+                                <%= link_to 'いいねを外す', comment_like_destroy_path(comment,current_user.id), method: :DELETE %><%=comment.likes.count %><br>
                                 </i>
                             <% else %>
                                 <i class="fa fa-heart like-btn">
-                                <%= link_to 'いいね', like_comment_create_path(comment,current_user.id), method: :POST ,remote: true %><%=comment.likes.count %><br>
+                                <%= link_to 'いいね', like_comment_create_path(comment,current_user.id), method: :POST  %><%=comment.likes.count %><br>
                                 </i>
                             <% end %>
                             <%= comment.created_at.in_time_zone('Tokyo').strftime("%Y年%-m月%-d日 %-H時%-M分") %> </td>   

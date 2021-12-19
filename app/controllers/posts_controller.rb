@@ -56,7 +56,6 @@ class PostsController < ApplicationController
                 @tag_result = @tag
             end
         end
-        
         if @post.save
             if @tag_result.instance_of?(Array)
                 @tag_result.each do |tag|
@@ -73,9 +72,6 @@ class PostsController < ApplicationController
     end
     def hashtag
         @tag = Tag.find_by(name: params[:name])
-        p "============="
-        p @tag
-        p "============="
         @posttags = @tag.posttags
     end
 
@@ -84,15 +80,9 @@ class PostsController < ApplicationController
         @comment=Comment.new
         @like=Like.new
         @comment_delete = Comment.where(delete_flg: nil).or(Comment.where.not(delete_flg: true))
-        p "==================="
-        p @comment
-        p "==================="
     end
     def edit
         @post=Post.find_by(params[:id])
-        p "==================="
-        p @post
-        p "==================="
     end
 
     def update

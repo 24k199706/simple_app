@@ -16,9 +16,6 @@ class PasswordResetsController < ApplicationController
     @user=User.find_by(id: params[:user_id])
   end
   def update
-    p "==========="
-    p params
-    p "==========="
     @user = User.find(params[:user_id])
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
@@ -27,9 +24,6 @@ class PasswordResetsController < ApplicationController
       remember @user
       redirect_to root_path
     else
-      p "=============="
-      p @user.errors.full_messages
-      p "=============="
       render :edit
     end
   end

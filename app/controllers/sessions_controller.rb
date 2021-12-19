@@ -4,12 +4,8 @@ class SessionsController < ApplicationController
   end
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    p "==================="
-    p params
-    p "==================="
     if user.resign != true
       if user && user.authenticate(params[:session][:password])
-    # ユーザーログイン後にユーザー情報のページにリダイレクトする
         log_in user
         redirect_to root_path
       else
