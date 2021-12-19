@@ -3,11 +3,14 @@
         <i class="fas fa-trash" style="color: black;"></i>
         <h6 style="color: black;">全削除</h6>
     <% end %>
-    <hr>
 <% if @notifications.exists? %>
+<table class="table table-hover">
+  <tbody>
     <div class="users-index">
         <%= render "notification", locals: {notifications: @notifications} %>
     </div>
+  </tbody>
+</table>  
 <% else %>
     <p>通知はありません</p>
 <% end %>

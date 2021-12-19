@@ -33,32 +33,32 @@
         <small class="text-muted"><%=@post.created_at.in_time_zone('Tokyo').strftime("%Y年%-m月%-d日 %-H時%-M分") %></small>
     </div>
         <div>
-            <tbody>
-                <table class="table" >           
+            <table class="table table-hover">
+                <tbody>
+                    <tr>         
                     <% @post.comments.each do |comment| %>
                         <% if comment.resign !=true %>
-                                <% if comment.user_id == current_user.id %>
-                                        <td><%= link_to(comment.user.name,mypage_path) %>
+                            <td><%= link_to(comment.user.name,mypage_path) %>
+                            <% if comment.user_id == current_user.id %>
                                         <%= link_to "delete", comment_delete_path(comment.id) , method: :delete,
-                                        data: { confirm: "返信を削除しますか？" } %>
-                                <% end %>
-                                        |<%= comment.comment_content %><br>   
-                                        <%= comment.created_at.in_time_zone('Tokyo').strftime("%Y年%-m月%-d日 %-H時%-M分") %>
-                                <% if current_user.comment_like_by(comment.id) %>
-                                        <i class="fa fa-heart unlike-btn">
-                                        <%= link_to 'いいねを外す', comment_like_destroy_path(comment,current_user.id), method: :DELETE  %><%=comment.likes.count %><br>
-                                        </i>
-                                        </td>
-                                <% else %>
-                                        <i class="fa fa-heart like-btn">
-                                        <%= link_to 'いいね', like_comment_create_path(comment,current_user.id), method: :POST  %><%=comment.likes.count %><br>
-                                        </i>
-                                        </td>
-                                <% end %>
+                                        data: { confirm: "返信を削除しますか？" } %><br>
+                            <% end %>
+                            <%= comment.comment_content %><br>
+                            <% if current_user.comment_like_by?(comment.id) %>
+                                <i class="fa fa-heart unlike-btn">
+                                <%= link_to 'いいねを外す', comment_like_destroy_path(comment,current_user.id), method: :DELETE   %><%=comment.likes.count %><br>
+                                </i>
+                            <% else %>
+                                <i class="fa fa-heart like-btn">
+                                <%= link_to 'いいね', like_comment_create_path(comment,current_user.id), method: :POST ,remote: true %><%=comment.likes.count %><br>
+                                </i>
+                            <% end %>
+                            <%= comment.created_at.in_time_zone('Tokyo').strftime("%Y年%-m月%-d日 %-H時%-M分") %> </td>   
                         <% end %>    
                     <% end %>
-                </table>
-            <tbody>
+                    </tr>
+            </tbody>
+        </table>
         </div>
 </main>
 <script>

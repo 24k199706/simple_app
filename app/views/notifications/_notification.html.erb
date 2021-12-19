@@ -1,8 +1,15 @@
-<%= @notifications.each do|infomation| %>
+<% @notifications.each do|infomation| %>
   <% if infomation.action=="like"%>
-  <table>
-      <%= link_to notification_form(infomation), posts_show_path(infomation.post_id) %><br/>
-    <% else %>
-      <%= link_to notification_form(infomation), posts_show_path(infomation.post_id) %>
+    <tr>
+      <td>
+        <%= link_to notification_form(infomation), posts_show_path(infomation.post_id) %><br>
+      </td>
+    </tr>
+  <% else %>
+    <tr>
+      <td>
+        <%= link_to notification_form(infomation), posts_show_path(infomation.post_id) %><br>
+      </td>
+    </tr>
   <% end %>
-<% end %>  
+<% end %>
