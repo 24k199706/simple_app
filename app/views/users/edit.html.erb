@@ -6,7 +6,6 @@
                     <%= form_for(@user,url:update_path) do |f| %>
                     <%= f.label :"画像の変更" %>
                     <%= f.file_field :image , id: :@user_image %><br>
-                    <%= image_tag @user.image.url id: :image_prv if @user.image? %>
                     <%= f.label :"ユーザ名" %>
                     <%= f.text_field :name, class: 'form-control' %>
                     <%= f.label :"メールアドレス" , class: "form-label" %>

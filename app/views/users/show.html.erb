@@ -23,14 +23,14 @@
         <tbody>
           <% @user.posts.each do |post| %>
             <tr>
-            <td><h6><%=post.title %><h6>
-            <%if post.image.url %>
-              <%= image_tag post.image.url , :size =>"320x240" %>
-              <%= post.content %>
-            <% end %>
-            <%= post.content %></td>
+              <td><h6><%=post.title %><h6>
+              <%if post.image.url %>
+                <%= image_tag post.image.url , :size =>"320x240" %>
+                <%= post.content %>
+              <% end %>
+                <%= post.content %></td>
+              <% end %>
             </tr>
-          <% end %>
         </tbody>
       </table>
   </div>

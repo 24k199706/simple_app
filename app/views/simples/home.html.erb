@@ -5,7 +5,7 @@
         <div class="starter-template  py-5 px-3">
             <table class="table table-hover" >
                 <tbody>
-                        <% @post.each do |post| %>
+                    <% @post.each do |post| %>
                         <tr>
                             <!--名前を表示させて、投稿した人のプロフィール画面に飛ばすリンク-->
                             <div class="card shadow-sm">
@@ -37,31 +37,31 @@
                                     </div>
                                 </td>
                             </div>
-                        <% end %>
-                    </tbody>
+                        </tr>
+                    <% end %>
+                </tbody>
             </table>
     </main>
 <% else %>
 <!--ログインしていないときの画面表示-->
 <div class="d-flex h-100 text-center text-white ">
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <main class="px-3">
-    <h1>Letter from a traveler</h1>
-    <H1>～旅人からのお手紙～</H1>
-    <p class="lead">このサイトは旅行好きな人や旅行写真好きの人向けの投稿サイトです。</p>
-        <p class="lead">あなたの心に残っている風景や写真はありますか?</p>
-        <p class="lead">一枚の写真から、今のあなたなら何を思いますか?また、その時何を思いましたか?</p>
-        <p class="lead">旅の景色や思い出の写真とあなたの言葉を発信してみませんか?</p>
-    <p class="lead">
-      <a href="/users/new" class="btn btn-lg btn-secondary fw-bold border-white text-dark">新規登録</a>
-    </p>
-  </main>
-</div>
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <main class="px-3">
+            <h1>Letter from a traveler</h1>
+            <h1>～旅人からのお手紙～</h1>
+            <p class="lead">このサイトは旅行好きな人や旅行写真好きの人向けの投稿サイトです。</p>
+            <p class="lead">あなたの心に残っている風景や写真はありますか?</p>
+            <p class="lead">一枚の写真から、今のあなたなら何を思いますか?また、その時何を思いましたか?</p>
+            <p class="lead">旅の景色や思い出の写真とあなたの言葉を発信してみませんか?</p>
+        
+            <a href="/users/new" class="btn btn-lg btn-secondary fw-bold border-white text-dark">新規登録</a>
+        </main>
+    </div>
 </div>
 <div class="card shadow-sm"></div>
     <main class="px-3">
-    News<br>
-    2021年12月19日 ホームページ完成
+        News<br>
+        2021年12月19日 ホームページ完成
     </main>
 
 <% end %>
