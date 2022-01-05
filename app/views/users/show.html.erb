@@ -23,13 +23,14 @@
         <tbody>
           <% @user.posts.each do |post| %>
             <tr>
-              <td><h6><%=post.title %><h6>
+              <td><h6><%= link_to post.title , posts_show_path(post.id) %></h6>
               <%if post.image.url %>
                 <%= image_tag post.image.url , :size =>"320x240" %>
-                <%= post.content %>
               <% end %>
-                <%= post.content %></td>
-              <% end %>
+            <%= post.content %><br>
+            <small class="text-muted"><%=post.created_at.in_time_zone('Tokyo').strftime("%Y年%-m月%-d日 %-H時%-M分") %></small></td>
+          <% end %>
+          
             </tr>
         </tbody>
       </table>

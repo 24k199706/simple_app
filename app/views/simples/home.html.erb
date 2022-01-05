@@ -5,10 +5,11 @@
         <div class="starter-template  py-5 px-3">
             <table class="table table-hover" >
                 <tbody>
-                    <% @post.each do |post| %>
-                        <tr>
-                            <!--名前を表示させて、投稿した人のプロフィール画面に飛ばすリンク-->
-                            <div class="card shadow-sm">
+                    <% if !@post.empty?%>
+                        <% @post.each do |post| %>
+                            <tr>
+                                <!--名前を表示させて、投稿した人のプロフィール画面に飛ばすリンク-->
+                                <div class="card shadow-sm">
                                 <td>
                                     <% if post.user.image.url %>
                                         <%= image_tag post.user.image.url , :size =>'80x80' %>    
@@ -25,19 +26,28 @@
                                         <svg class="bd-placeholder-img card-img-top" width="50%" height="100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
                                         <%=  post.content %>
                                     <% end %>
-                                    <% Posttag.where(post_id: post.id).each do |tag|%>
-                                        <%= link_to tag.tag.name ,hashtag_path(tag.tag.name) %>
-                                    <% end %>
                                     <div class="card-body">
-                                        
-                                    <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <small class="text-muted"><%=post.created_at.in_time_zone('Tokyo').strftime("%Y年%-m月%-d日 %-H時%-M分") %></small>
-                                    </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <% Posttag.where(post_id: post.id).each do |tag|%>
+                                                <%= link_to tag.tag.name ,hashtag_path(tag.tag.name) %>
+                                            <% end %>
+                                        </div>
+                                        <div class="btn-group">
+                                            <small class="text-muted"><%=post.created_at.in_time_zone('Tokyo').strftime("%Y年%-m月%-d日 %-H時%-M分") %></small>
+                                        </div>
                                     </div>
                                 </td>
-                            </div>
-                        </tr>
+                            </tr>
+                        <% end %>
+                    <% else %>
+                        <main class="px-3">
+                            <h1>投稿つぶやいて世界を広げよう！！！！！！！！！<h1>
+                            <p class="lead">ハッシュタグをつけて投稿しよう</p>
+                            <p class="lead">他のユーザさんにコメントをしてみよう</p>
+                            <p class="lead">投稿に対していいねをしよう</p>
+                            <p class="lead">下の新規登録ボタンから投稿しよう</p>
+                            <a href="/posts/new" class="btn btn-lg btn-secondary fw-bold border-white text-dark">新規登録</a>
+                        </main>
                     <% end %>
                 </tbody>
             </table>

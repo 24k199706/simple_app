@@ -7,7 +7,8 @@ class LikesController < ApplicationController
     end
     def comment_like_create
         @like=Like.new(user_id: params[:user_id] , comment_id: params[:comment_id])
-        like_comment_create(@like)
+        @like.save
+        redirect_to posts_show_path(params[:post_id])
     end
     def destroy
         @like = Like.find_by(post_id: params[:post_id], user_id: params[:user_id])
@@ -17,7 +18,7 @@ class LikesController < ApplicationController
     def comment_like_destroy
         @like = Like.find_by(comment_id: params[:comment_id], user_id: params[:user_id])
         @like.destroy
-        redirect_to posts_show_path(params[:comment_id])
+        redirect_to posts_show_path(params[:post_id])
     end
     def like_create(like)
         if like.save
@@ -27,13 +28,6 @@ class LikesController < ApplicationController
                 format.html {redirect_to request.referrer}
                 format.js
             end
-        else
-            render "posts/show"
-        end
-    end
-    def like_comment_create(like)
-        if like.save
-            redirect_to posts_show_path(params[:comment_id])
         else
             render "posts/show"
         end

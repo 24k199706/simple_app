@@ -41,8 +41,8 @@ Rails.application.routes.draw do
 #いいね機能
   post "/post_likes/:post_id/:user_id", to:"likes#post_create" ,as:"like_post_create"
   delete "/post_likes/:post_id/:user_id",to:"likes#destroy",as:"like_destroy"
-  post "/comment_likes/:comment_id/:user_id", to:"likes#comment_like_create" ,as:"like_comment_create"
-  delete "/comment_likes/:user_id/:comment_id",to:"likes#comment_like_destroy" ,as:"comment_like_destroy"
+  post "/comment_likes/:comment_id/:user_id/:post_id", to:"likes#comment_like_create" ,as:"like_comment_create"
+  delete "/comment_likes/:comment_id/:user_id/:post_id",to:"likes#comment_like_destroy" ,as:"comment_like_destroy"
 
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,          only: [:create, :destroy]

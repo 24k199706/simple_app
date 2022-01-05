@@ -1,12 +1,40 @@
 <table class="table table-hover" >
-  <tbody>
-    <tr>
-      <td>
-        <% @posttags.each do |pottag| %>
-            <%=  posttag.post.content %>
-          <% end %>
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+                <tbody>
+                    <% @posttags.each do |posttag| %>
+                        <tr>
+                            <!--名前を表示させて、投稿した人のプロフィール画面に飛ばすリンク-->
+                            <div class="card shadow-sm">
+                                <td>
+                                    <% if posttag.post.user.image.url %>
+                                        <%= image_tag posttag.user.image.url , :size =>'80x80' %>    
+                                    <% else %>
+                                       <%= gravatar_for current_user %>
+                                    <% end %>
+                                    <%= link_to posttag.post.user.name ,user_path(posttag.post.user.name) %>
+                                </td>
+                                <td>
+                                    <h3><%= link_to posttag.post.title , posts_show_path(posttag.post.id) %></h3>
+                                    <% if posttag.post.image.url %>
+                                            <%= image_tag posttag.post.image.url , :size =>"320x240" %><%=  posttag.post.content %>
+                                    <% else %>
+                                        <svg class="bd-placeholder-img card-img-top" width="50%" height="100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                                        <%=  posttag.post.content %>
+                                    <% end %>
+                                    <% Posttag.where(post_id: posttag.post.id).each do |tag|%>
+                                        <%= link_to tag.tag.name ,hashtag_path(tag.tag.name) %>
+                                    <% end %>
+                                    <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                      <% Posttag.where(post_id: post.id).each do |tag|%>
+                                            <%= link_to tag.tag.name ,hashtag_path(tag.tag.name) %>
+                                      <% end %>
+                                    </div>
+                                    <div class="btn-group">
+                                      <small class="text-muted"><%=posttag.post.created_at.in_time_zone('Tokyo').strftime("%Y年%-m月%-d日 %-H時%-M分") %></small>
+                                    </div>
+                                </td>
+                            </div>
+                        </tr>
+                    <% end %>
+              </tbody>
+        </table>

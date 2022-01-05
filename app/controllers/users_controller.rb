@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   #プロフィール画面のコントローラ側
   def show
     if params[:name]
-      @user = User.find_by(name: params[:name])
+      if params[:format]
+        @user = User.find_by(name: params[:name] + "." + params[:format])
+      else
+        @user = User.find_by(name: params[:name])
+      end
     else
       @user=User.find(current_user.id)
     end
@@ -44,6 +48,10 @@ class UsersController < ApplicationController
     if @user
       @user.resign = false
       @user.save
+      @user.posts.each do |post|
+        post.delete_flg=false
+        post.save
+      end
       log_in @user
       redirect_to root_path
     end
