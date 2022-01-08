@@ -40,14 +40,18 @@
                             </tr>
                         <% end %>
                     <% else %>
-                        <main class="px-3">
-                            <h1>投稿つぶやいて世界を広げよう！！！！！！！！！<h1>
-                            <p class="lead">ハッシュタグをつけて投稿しよう</p>
-                            <p class="lead">他のユーザさんにコメントをしてみよう</p>
-                            <p class="lead">投稿に対していいねをしよう</p>
-                            <p class="lead">下の新規登録ボタンから投稿しよう</p>
-                            <a href="/posts/new" class="btn btn-lg btn-secondary fw-bold border-white text-dark">新規登録</a>
-                        </main>
+                    <div class="d-flex h-100 text-center text-white ">
+                        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+                            <main class="px-3">
+                                <h1>投稿つぶやいて世界を広げよう！！！！！！！！！<h1>
+                                <p class="lead">ハッシュタグをつけて投稿しよう！</p>
+                                <p class="lead">他のユーザにコメントをしてみよう</p>
+                                <p class="lead">投稿に対していいねをしよう</p>
+                                <p class="lead">下の新規登録ボタンから投稿しよう</p>
+                                <%= link_to "投稿へGO！！", posts_new_path, class: "btn btn-primary btn-lg" %>
+                            </main>
+                        </div>
+                    </div>
                     <% end %>
                 </tbody>
             </table>
